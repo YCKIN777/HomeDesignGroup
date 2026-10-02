@@ -1,0 +1,43 @@
+<html style="margin:0;padding:0;">
+<title>壹城资料A填写位置地图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei',sans-serif;padding:18px 22px;color:#243447;">
+
+  <div style="font-size:19px;font-weight:700;">壹城资料 A → 填写位置（8 项 4 处）</div>
+  <div style="font-size:12px;color:#8A94A6;margin-top:3px;">改完配置包必须重启服务才生效｜报价走知识库即时生效｜组织分工在数据库</div>
+
+  <div style="margin-top:12px;font-size:12px;line-height:1.7;">
+
+    <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 13px;margin-bottom:7px;">
+      <b style="color:#1F6F4B;">① company_profiles/壹城精工/rules.yaml（规则值）</b>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;">
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:5px;padding:3px 8px;">付款比例 → payment_stages（占位 30/40/20/10）</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:5px;padding:3px 8px;">折扣阈值 → discount.need_approval_above（0.95）</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:5px;padding:3px 8px;">SOP节奏 → sop.first_contact_hours（24h）/ followup_days（3,7,15）</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:5px;padding:3px 8px;">质保 → warranty.years（2）/ scope</span>
+      </div>
+    </div>
+
+    <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 13px;margin-bottom:7px;">
+      <b style="color:#1F3A4D;">② company_profiles/壹城精工/workflow.yaml（验收节点）</b>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:5px;padding:3px 8px;margin-top:5px;display:inline-block;">transitions 中 5 个"验收" trigger：隐蔽→防水 / 防水→泥木 / 泥木→油漆 / 油漆→安装 / 安装→验收交付（locked_nodes 水电/防水不可删）</div>
+    </div>
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:9px 13px;margin-bottom:7px;">
+      <b style="color:#B26A00;">③ 知识库 + 记忆（非配置，随时加）</b>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;">
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:5px;padding:3px 8px;">报价结构 → knowledge/01-报价-*.md（整篇替换）</span>
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:5px;padding:3px 8px;">渠道占比 → memory/渠道观察.md（frontmatter 本体化）+ 线索 channel 字段积累</span>
+      </div>
+    </div>
+
+    <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 13px;">
+      <b style="color:#1F3A4D;">④ 数据库 users 表（组织分工）</b>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:5px;padding:3px 8px;margin-top:5px;display:inline-block;">当前仅 admin/主管 → 加 销售/客服/设计师 账号（无接口，需 SQL 或交给我加）</div>
+    </div>
+
+    <div style="background:#1F3A4D;border-radius:8px;padding:9px 13px;color:#fff;margin-top:7px;">
+      规则：只改值不改键名（schema 校验会拦）｜要加新键先找我加校验｜改完重启 → 自检验证
+    </div>
+  </div>
+</div>
+</html>

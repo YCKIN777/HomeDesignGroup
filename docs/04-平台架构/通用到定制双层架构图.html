@@ -1,0 +1,63 @@
+<html style="margin:0;padding:0;">
+<title>家装AI智能体平台·通用到定制双层架构图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">通用 → 定制 · 双层架构图（v1）</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">示意 · 探讨稿</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">原则：<b>骨架封闭、叶子开放</b>。核心流程和状态机是通用的、锁住的；数据、术语、规则、扩展概念是定制的、可改的。没有数据也能先把通用骨架立起来。</div>
+
+  <!-- 三列 -->
+  <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;">
+
+    <!-- 通用内核 -->
+    <div style="background:#1F3A4D;border-radius:10px;padding:14px;flex:1;min-width:260px;">
+      <div style="font-size:14px;font-weight:700;color:#fff;">① 通用内核（行业通用 · 不改）</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+        <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:8px 12px;font-size:13px;">通用本体<br><span style="font-size:11px;color:#A9C0D2;">概念骨架 · 关系 · 生命周期状态机（八阶段）</span></div>
+        <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:8px 12px;font-size:13px;">Agent 框架<br><span style="font-size:11px;color:#A9C0D2;">中控 + 六工种分工 · 人审后发 · 审批点</span></div>
+        <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:8px 12px;font-size:13px;">主数据模型<br><span style="font-size:11px;color:#A9C0D2;">线索→客户→项目→报价→材料→工地→验收</span></div>
+        <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:8px 12px;font-size:13px;">知识库分类骨架<br><span style="font-size:11px;color:#A9C0D2;">工艺 / 材料 / 案例 / 话术 四大类</span></div>
+        <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:8px 12px;font-size:13px;">全流程步骤<br><span style="font-size:11px;color:#A9C0D2;">八阶段步骤清单（行业 SOP 骨架）</span></div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;font-size:22px;color:#E07B39;padding:0 2px;">→</div>
+
+    <!-- 定制机制 -->
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:10px;padding:14px;flex:1;min-width:280px;">
+      <div style="font-size:14px;font-weight:700;color:#1F3A4D;">② 定制机制（可配置 · 中间层）</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:13px;">术语映射表<br><span style="font-size:11px;color:#8A94A6;">公司叫法 ↔ 通用概念（线索=客源 / 中期款=第二笔款）</span></div>
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:13px;">扩展概念 / 扩展字段<br><span style="font-size:11px;color:#8A94A6;">公司专属属性：套餐A/B/C、质保金、特殊工艺</span></div>
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:13px;">规则配置表<br><span style="font-size:11px;color:#8A94A6;">折扣阈值 / 付款比例 / SOP节奏 / 质保年限</span></div>
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:13px;">状态机配置<br><span style="font-size:11px;color:#8A94A6;">增删节点（如改四节点验收），强约束节点锁定（水电不可跳过）</span></div>
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:13px;">公司配置包<br><span style="font-size:11px;color:#8A94A6;">一家公司一个包，切换公司=换配置包，内核不动</span></div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;font-size:22px;color:#E07B39;padding:0 2px;">→</div>
+
+    <!-- 公司实例 -->
+    <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:10px;padding:14px;flex:1;min-width:240px;">
+      <div style="font-size:14px;font-weight:700;color:#1F3A4D;">③ 公司实例（实例化 · 现在还没有）</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">数据库实例<br><span style="font-size:11px;color:#8A94A6;">具体表结构 + 真实业务数据</span></div>
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">公司语义定义<br><span style="font-size:11px;color:#8A94A6;">术语 · 规则值 · 节点划分 · 组织架构</span></div>
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">知识库内容<br><span style="font-size:11px;color:#8A94A6;">公司话术 · 材料库 · 工艺标准 · 案例</span></div>
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">历史数据<br><span style="font-size:11px;color:#8A94A6;">报价单 / 合同 / 工地记录（校准 AI）</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 关键回答 -->
+  <div style="margin-top:16px;background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.9;">
+    <b>直接回答你的三个点：</b><br>
+    ① <b>没有数据能不能做？</b> 能。架构是骨架、数据是肉。通用内核现在就能立起来；数据库和真实数据是将来实例化时才填的。<br>
+    ② <b>语义关系怎么改？</b> 通过"定制机制"改，不动内核：术语走映射表、公司特有概念走扩展字段、数值走规则配置表、流程节点走状态机配置（强约束锁定，防改坏全链路）。<br>
+    ③ <b>怎么做到私人化定制？</b> 每家公司生成一个「公司配置包」（数据+语义+规则+知识库），切换公司 = 换配置包，架构代码零改动。这正是"一套框架，多公司定制"的做法。
+  </div>
+
+</div>
+</html>

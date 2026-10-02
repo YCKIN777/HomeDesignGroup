@@ -1,0 +1,57 @@
+<html style="margin:0;padding:0;">
+<title>四层记忆架构·即时短长文本+本体链接</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">四层记忆架构 · 本体链接版</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">v1 · 结合 Ontology 模式</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">四层：即时（易失）→ 短（近期）→ 长（持久·本体驱动）→ 文本（记忆文件）。本体是贯穿骨架：概念/关系白名单/状态机决定记忆怎么存、怎么写、怎么查。</div>
+
+  <!-- 四层 -->
+  <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px;">
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:#1F3A4D;">L1 即时记忆（Working · 易失）</div>
+      <div style="font-size:12px;color:#5B6B7F;line-height:1.7;margin-top:4px;">当前会话上下文：正在谈的客户、本条消息、待审批草稿、任务状态<br>存储：内存 dict + session 表｜生命周期：会话内｜清理：会话结束即清</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:#1F3A4D;">L2 短记忆（Recent · 近期）</div>
+      <div style="font-size:12px;color:#5B6B7F;line-height:1.7;margin-top:4px;">近期对话/跟进/审批记录：谁说了什么、跟到哪一步、批了什么<br>存储：messages / followups / audit_log（SQLite，天然落库）｜生命周期：30 天滚动｜清理：滚动归档</div>
+    </div>
+
+    <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:10px;padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:#2E7D32;">L3 长记忆（Persistent · 本体驱动）★</div>
+      <div style="font-size:12px;color:#5B6B7F;line-height:1.7;margin-top:4px;">跨会话持久知识：客户画像（需求标签/偏好/历史）· 公司语义（配置包）· 沉淀经验 · 知识库<br>存储：customers + company_profiles + sedimentation_items + knowledge｜生命周期：长期<br><b>本体链接</b>：概念表↔实体记录（类↔个体）· 关系白名单↔关联字段 · 状态机↔客户/项目状态——长记忆按"概念+关系+状态"结构化存，Agent 检索走语义而非纯文本</div>
+    </div>
+
+    <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:#1F3A4D;">L4 文本记忆（Markdown 记忆文件）★</div>
+      <div style="font-size:12px;color:#5B6B7F;line-height:1.7;margin-top:4px;">人可读可编辑的外部记忆：客户访谈笔记 · 谈单复盘 · 提炼物 · 话术迭代记录<br>存储：memory/ 目录（Obsidian 兼容 md，可同步到你的 Obsidian 库）｜生命周期：长期｜人工维护<br><b>本体链接</b>：每个记忆文件带 YAML frontmatter 元数据（概念ID、关系、状态、时间）——机器可检索、可回流结构化</div>
+    </div>
+
+  </div>
+
+  <!-- 流转 -->
+  <div style="margin-top:14px;background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:12px 16px;">
+    <div style="font-size:13px;color:#5B6B7F;font-weight:600;">四层流转（记忆如何"长大"）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:12px;color:#243447;">
+      <span style="background:#EDF2F5;border-radius:6px;padding:6px 10px;">L1→L2<br><span style="font-size:11px;color:#8A94A6;">会话结束落库（自动）</span></span>
+      <span style="font-size:16px;color:#B8C2CE;">→</span>
+      <span style="background:#EDF2F5;border-radius:6px;padding:6px 10px;">L2→L3<br><span style="font-size:11px;color:#8A94A6;">提炼画像/经验（走准入4条）</span></span>
+      <span style="font-size:16px;color:#B8C2CE;">→</span>
+      <span style="background:#EEF6EE;border-radius:6px;padding:6px 10px;">L3→L4<br><span style="font-size:11px;color:#8A94A6;">结构化条目物化为 md</span></span>
+      <span style="font-size:16px;color:#B8C2CE;">↔</span>
+      <span style="background:#EDF2F5;border-radius:6px;padding:6px 10px;">L4→L3<br><span style="font-size:11px;color:#8A94A6;">优质 md 结构化回流（评审后）</span></span>
+    </div>
+    <div style="font-size:12px;color:#8A94A6;margin-top:8px;">管理组件：memory_manager（读写/流转/归档/清理）；各层清理策略：即时=会话清、短=30天滚动、长=评审制增删、文本=人工维护。</div>
+  </div>
+
+  <!-- 结论 -->
+  <div style="margin-top:12px;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.9;">
+    <b>一句话：即时记忆=手上的活，短记忆=最近的事，长记忆=懂这个人和这家公司（本体结构化），文本记忆=写下来的复盘与沉淀（Obsidian 文件）。四层靠 memory_manager 流转，本体是让"长记忆和文本记忆"可检索、可回流、不跑偏的骨架。</b>
+  </div>
+
+</div>
+</html>

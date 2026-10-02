@@ -1,0 +1,53 @@
+<html style="margin:0;padding:0;">
+<title>通用内核v0.2·锁定结构与扩展点</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">通用内核 v0.2 · 锁定结构与扩展点</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">最小可信版 · 定稿即锁定</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">规则：<b>结构锁定不改；迭代全部发生在扩展点里。</b>先拉壹城精工一家试跑，试跑中学到的东西通过扩展点沉淀，不回头改结构。</div>
+
+  <!-- 锁定结构 -->
+  <div style="margin-top:16px;background:#1F3A4D;border-radius:10px;padding:14px;">
+    <div style="font-size:14px;font-weight:700;color:#fff;">🔒 锁定结构（封闭项 · 不改）</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+      <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:9px 12px;font-size:13px;">八阶段主链<br><span style="font-size:11px;color:#A9C0D2;">获客 → 量房设计 → 报价签约 → 材料 → 施工 → 验收 → 售后（经营横贯）</span></div>
+      <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:9px 12px;font-size:13px;">状态机主干<br><span style="font-size:11px;color:#A9C0D2;">量房→设计→报价→签约→开工→水电→防水→泥木→油漆→安装→验收交付（水电等隐蔽工程不可跳过）</span></div>
+      <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:9px 12px;font-size:13px;">核心概念（必选）<br><span style="font-size:11px;color:#A9C0D2;">渠道·线索·客户·项目·户型·方案·报价单·合同·材料·供应商·工地·节点·验收·角色·环节</span></div>
+      <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:9px 12px;font-size:13px;">Agent 框架<br><span style="font-size:11px;color:#A9C0D2;">中控 + 六工种 · 人审后发 · 三审批点（折扣/签证/验收）</span></div>
+      <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:9px 12px;font-size:13px;">数据主线<br><span style="font-size:11px;color:#A9C0D2;">线索→客户→项目→报价→材料→工地→验收（起步两张表：客户CRM、项目）</span></div>
+      <div style="background:#2E4C63;color:#E8F0F5;border-radius:8px;padding:9px 12px;font-size:13px;">沉淀原则<br><span style="font-size:11px;color:#A9C0D2;">数据隔离 · 语义共享 · 垃圾剔除</span></div>
+    </div>
+  </div>
+
+  <!-- 扩展点 -->
+  <div style="margin-top:12px;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:10px;padding:14px;">
+    <div style="font-size:14px;font-weight:700;color:#1F3A4D;">🔓 扩展点（开放项 · 随便改 · 迭代都在这）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;font-size:13px;">
+      <span style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:7px 12px;">术语映射表<br><span style="font-size:11px;color:#8A94A6;">公司叫法↔通用概念</span></span>
+      <span style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:7px 12px;">规则值<br><span style="font-size:11px;color:#8A94A6;">折扣/付款比例/SOP/质保</span></span>
+      <span style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:7px 12px;">扩展概念/字段<br><span style="font-size:11px;color:#8A94A6;">套餐档位/质保金/特殊工艺</span></span>
+      <span style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:7px 12px;">状态机节点配置<br><span style="font-size:11px;color:#8A94A6;">增删验收节点等（强约束锁定）</span></span>
+      <span style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:7px 12px;">知识库内容<br><span style="font-size:11px;color:#8A94A6;">话术/材料/工艺/案例</span></span>
+      <span style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:7px 12px;">新 Agent 能力<br><span style="font-size:11px;color:#8A94A6;">插件式接入</span></span>
+    </div>
+  </div>
+
+  <!-- 沉淀与迭代 -->
+  <div style="margin-top:12px;background:#EEF6EE;border:1px solid #CFE0CF;border-radius:10px;padding:14px;">
+    <div style="font-size:14px;font-weight:700;color:#2E7D32;">迭代怎么发生（结构不动）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:13px;">
+      <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">壹城试跑<br><span style="font-size:11px;color:#8A94A6;">第一家，跑真实业务</span></span>
+      <span style="font-size:18px;color:#2E7D32;">→</span>
+      <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">提炼<br><span style="font-size:11px;color:#8A94A6;">去噪·去重·匿名化</span></span>
+      <span style="font-size:18px;color:#2E7D32;">→</span>
+      <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">沉淀中心<br><span style="font-size:11px;color:#8A94A6;">垃圾剔除·只收优质</span></span>
+      <span style="font-size:18px;color:#2E7D32;">→</span>
+      <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">反哺扩展点<br><span style="font-size:11px;color:#8A94A6;">更新壹城配置包·知识库</span></span>
+    </div>
+    <div style="font-size:12px;color:#5B6B7F;margin-top:8px;">封闭项变更 ≠ 日常动作：只有跨公司共性 + 评审通过，才走内核版本升级（v0.2→v0.3，留 CHANGELOG）。</div>
+  </div>
+
+</div>
+</html>

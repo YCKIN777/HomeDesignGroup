@@ -1,0 +1,72 @@
+<html style="margin:0;padding:0;">
+<title>平台框架到技术框架承接链</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">平台框架 → 技术框架 → 实现落点（承接链）</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">v1 · 2026-09-30</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">每个平台框架组件，由技术框架承接，落到具体文件/模块。三列对齐，逐步推进。</div>
+
+  <!-- 三列头 -->
+  <div style="margin-top:16px;display:flex;gap:8px;font-size:12px;font-weight:700;color:#1F3A4D;">
+    <div style="flex:1;background:#1F3A4D;color:#fff;border-radius:6px;padding:7px 10px;">平台框架组件</div>
+    <div style="flex:1;background:#2E4C63;color:#fff;border-radius:6px;padding:7px 10px;">技术框架承接</div>
+    <div style="flex:1;background:#E07B39;color:#fff;border-radius:6px;padding:7px 10px;">实现落点（文件/模块）</div>
+  </div>
+
+  <div style="margin-top:6px;display:flex;flex-direction:column;gap:6px;font-size:12px;">
+    <div style="display:flex;gap:8px;">
+      <div style="flex:1;background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">内核（锁定：八阶段/状态机/核心概念/Agent框架/数据主线/沉淀原则）</div>
+      <div style="flex:1;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">内核层：状态机·规则引擎·配置加载器·消息总线</div>
+      <div style="flex:1;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:7px 10px;">src/kernel/（workflow.py·rules.py·config_loader.py·bus.py）</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <div style="flex:1;background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">配置包（术语/规则/扩展/节点——公司定制）</div>
+      <div style="flex:1;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">YAML 配置包 + schema 校验（DOS-DP 式）</div>
+      <div style="flex:1;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:7px 10px;">company_profiles/壹城精工/*.yaml + manifest.json</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <div style="flex:1;background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">数据（隔离·每公司独立）</div>
+      <div style="flex:1;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">SQLite 每公司一库（8 张表）</div>
+      <div style="flex:1;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:7px 10px;">db/壹城精工.db（customers·projects·messages·followups·sedimentation·users·audit_log·sessions）</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <div style="flex:1;background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">本体系统（术语注册表/关系白名单/状态机/沉淀/记忆文件）</div>
+      <div style="flex:1;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">本体承载：terms/rules/workflow + 沉淀准入 + 记忆文件 frontmatter</div>
+      <div style="flex:1;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:7px 10px;">terms.yaml·rules.yaml·workflow.yaml + sedimentation/ + memory/</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <div style="flex:1;background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">四层记忆（本体驱动·Otter 读取）</div>
+      <div style="flex:1;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">memory_manager + 按需检索 + sessions 表</div>
+      <div style="flex:1;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:7px 10px;">src/memory_manager.py·memory_retrieval.py + sessions 表 + memory/</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <div style="flex:1;background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">Agent 能力（获客客服→派单）</div>
+      <div style="flex:1;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">六子 Agent + 消息总线 + 人审后发</div>
+      <div style="flex:1;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:7px 10px;">src/lead·dispatch·scoring·sop·invite·kb_agent.py + main.py</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <div style="flex:1;background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">回路（试跑→提炼→沉淀→评审）</div>
+      <div style="flex:1;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">沉淀准入 + 分拣 + 版本化发布</div>
+      <div style="flex:1;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:7px 10px;">sedimentation/ + CHANGELOG + 评审清单</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <div style="flex:1;background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">工程件（权限/审计/调度/API/指标/测试/运维）</div>
+      <div style="flex:1;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">users·audit_log·轮询·API契约·指标视图·测试链·init/backup</div>
+      <div style="flex:1;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:7px 10px;">db 表 + src/api/ + init 脚本 + backup.ps1 + tests/</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <div style="flex:1;background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">AI 模型（可换）</div>
+      <div style="flex:1;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:7px 10px;">llm.py 抽象（豆包/Ollama 只改配置）</div>
+      <div style="flex:1;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:7px 10px;">src/llm.py + config/model_config.yaml</div>
+    </div>
+  </div>
+
+  <!-- 推进带 -->
+  <div style="margin-top:12px;background:#1F3A4D;border-radius:10px;padding:10px 14px;color:#fff;font-size:12px;line-height:1.8;">
+    <b>分步推进（每阶段内部 Step 化）</b>：阶段0 资料→阶段1 骨架（Step 1.1 init → 1.2 配置校验 → 1.3 总线 → 1.4 Agent骨架 → 1.5 llm → 1.6 memory → 1.7 登录页/health）→ 阶段2 MVP（M1→M2→M3a→M4→M5）→ 阶段3 增强（M6→M7→M8→M9→记忆文件→M3b）→ 阶段4 试跑沉淀。
+  </div>
+
+</div>
+</html>

@@ -1,0 +1,83 @@
+<html style="margin:0;padding:0;">
+<title>前端智能体v1·结构边界图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">前端智能体 v1 · 结构边界图（第一阶段）</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">示意 · 探讨稿</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">结论：前端独立成一个交付单元；后端本阶段不建，只以「知识文档」喂给前端谈单用，将来再独立建后端 Agent。</div>
+
+  <!-- 入口 -->
+  <div style="margin-top:16px;">
+    <div style="font-size:13px;color:#5B6B7F;font-weight:600;margin-bottom:8px;">统一入口（客户触点）</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 14px;font-size:13px;">微信 / 企微</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 14px;font-size:13px;">小程序</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 14px;font-size:13px;">抖音 / 小红书留资</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 14px;font-size:13px;">到店 / 电话</div>
+    </div>
+  </div>
+
+  <!-- 前端智能体主体 -->
+  <div style="margin-top:14px;background:#fff;border:2px solid #1F3A4D;border-radius:10px;padding:14px;">
+    <div style="font-size:14px;font-weight:700;color:#1F3A4D;">前端智能体（一个交付单元 · 内部多 Agent 协作 + 前端主控）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px;">
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">① 线索归集<br><span style="color:#8A94A6;font-size:11px;">多渠道·去重·建档</span></div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">② 线索评分<br><span style="color:#8A94A6;font-size:11px;">真实性·意向分级</span></div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">③ 客服 / 首联<br><span style="color:#8A94A6;font-size:11px;">7×24 接待·需求采集</span></div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">④ 跟进 / 邀约<br><span style="color:#8A94A6;font-size:11px;">SOP 提醒·到店</span></div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:13px;">⑤ 谈单辅助<br><span style="color:#E07B39;font-size:11px;">知识库支撑·话术</span></div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">⑥ 签约确认<br><span style="color:#8A94A6;font-size:11px;">合同草稿·收款提醒</span></div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#1F3A4D;color:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:600;">⑦ 派单给设计师<br><span style="font-weight:400;font-size:11px;color:#C9D8E4;">需求交接·建项目</span></div>
+    </div>
+    <div style="font-size:12px;color:#8A94A6;margin-top:8px;">前端主控：客户走到哪一步、派哪个子 Agent、跨子环节交接、人工审批把关（销售确认 / 主管放行）。</div>
+  </div>
+
+  <!-- 谈单知识库 -->
+  <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+    <div style="background:#FFF6EE;border:1px dashed #E07B39;border-radius:10px;padding:12px;flex:1;min-width:280px;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;">谈单知识库（以文档形式进入 · 只挂文档，不算不批）</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:4px 10px;font-size:12px;">设计要点 / 风格体系</span>
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:4px 10px;font-size:12px;">报价区间 / 套餐结构</span>
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:4px 10px;font-size:12px;">工艺卖点 / 验收常识</span>
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:4px 10px;font-size:12px;">案例 / 公司资质 / 话术库</span>
+      </div>
+      <div style="font-size:12px;color:#E07B39;margin-top:8px;">用途：谈单时「说得对、有弹药」——聊设计、给客户报价概念、讲工艺建立信任。正式工程量计算、正式报价、审批放行一律不做。</div>
+    </div>
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:12px;flex:1;min-width:220px;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;">前端终点 · 设计师接单（人）</div>
+      <div style="font-size:12px;color:#5B6B7F;margin-top:6px;line-height:1.7;">派单 = 交接动作：客户档案 + 需求摘要 + 量房/签约信息 打包传给设计师；设计师接单后进入后端流程（本阶段由人 + 现有设计原型承接）。</div>
+    </div>
+  </div>
+
+  <!-- 后端预留 -->
+  <div style="margin-top:10px;background:#EDF2F5;border:2px dashed #B8C2CE;border-radius:10px;padding:12px;">
+    <div style="font-size:13px;font-weight:700;color:#8A94A6;">后端（本阶段不建 · 预留接口）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:13px;color:#8A94A6;">
+      <span style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:4px 10px;">预算 Agent（正式报价）</span>
+      <span style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:4px 10px;">工程 Agent（工地/验收）</span>
+      <span style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:4px 10px;">售后 Agent（质保/客诉）</span>
+      <span style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:4px 10px;">总监办看板（全链指标）</span>
+    </div>
+    <div style="font-size:12px;color:#8A94A6;margin-top:8px;">将来通过同一条数据主线（客户 CRM / 项目）和状态机衔接，是「加模块」不是「重构」。</div>
+  </div>
+
+  <!-- 数据主线 -->
+  <div style="margin-top:10px;background:#1F3A4D;border-radius:10px;padding:12px 16px;">
+    <div style="font-size:13px;font-weight:600;color:#C9D8E4;">数据主线（第一阶段只落两张表）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:13px;">
+      <span style="background:#2E4C63;color:#fff;border-radius:6px;padding:4px 10px;">客户 CRM（线索→客户）</span>
+      <span style="background:#2E4C63;color:#fff;border-radius:6px;padding:4px 10px;">项目（派单后建档）</span>
+    </div>
+  </div>
+
+</div>
+</html>

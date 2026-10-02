@@ -1,0 +1,70 @@
+<html style="margin:0;padding:0;">
+<title>本体工程实践与家装平台结合映射图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">本体工程实践 ↔ 家装平台落点</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">学习自 GitHub/W3C · 2026-09-29</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">左：标准本体工程的原则/做法（OBO Foundry 16 原则、W3C OWL 2、DOS-DP YAML 模式、ODP 模式库）。右：直接落进你的家装平台哪个组件。保持轻量，不引入 OWL 文件格式。</div>
+
+  <!-- 映射行 -->
+  <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px;">
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;">
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>P6 文本定义</b>：每个概念要有"一个X，其特征Y"式定义，不只给名字</div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>terms.yaml 升级为术语注册表</b>：每词条 = {id, label, 定义, 父类, 来源, 状态}</div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;">
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>P12 命名唯一 + P19 术语稳定</b>：名字唯一；改语义=新建 ID，旧 ID 含义永不变</div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>内核版本化 + 沉淀中心纪律</b>：提炼物进池带 ID/定义/来源；语义变更走新概念（正好保护你的内核锁定）</div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;">
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>P7 关系复用</b>：别发明太多关系，复用通用关系（part_of / preceded_by / has_participant / has_responsible）</div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>关系白名单</b>：通用关系≤5 + 领域关系（跟进/派单/转化…）明确域/值域，不随意造</div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;">
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>OWL 类层级+公理</b>：单一继承、互斥类、对象/数据属性、基数约束（如"一个客户至少一个跟进"）</div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>workflow/rules.yaml 公理化</b>：状态迁移表带触发条件+强约束；数据表约束（跟进至少1条）</div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;">
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>Competency Questions 能力问题</b>：每个本体模块配"它能回答什么问题"（本体工程的起点）</div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>Agent 能力清单</b>：每个子 Agent = 一组业务问题（M3a 收件箱答"这条线索怎么回"）；校验本体覆盖</div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;">
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>DOS-DP YAML 模式 + 校验器</b>（GitHub INCATools）：YAML 写模式、变量插值、Python 校验器，填错报错不憋到运行</div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>配置包 schema 校验器</b>（kernel/config_loader.py）：术语/规则/扩展/workflow 填错当场报错；话术模板支持 {变量} 插值</div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;">
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>ODP 模式库 / 生命周期模式</b>：状态机=生命周期模式（GO 的 biological process 模式），别从零造</div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>八阶段状态机 = 你的生命周期本体</b>：主干锁定 + 节点可配（扩展点），就是标准做法</div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;">
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>P4 版本化发布</b>：版本标记、存储、正式发布，变更通知</div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 12px;flex:1;min-width:240px;font-size:12px;line-height:1.6;"><b>内核 v0.2→v0.3 发布流程</b>：CHANGELOG + 版本目录 + 评审（你已在做，补发布记录）</div>
+    </div>
+
+  </div>
+
+  <!-- 不采用的 -->
+  <div style="margin-top:14px;background:#FFF0EC;border:1px solid #F2C9BD;border-radius:10px;padding:12px 16px;font-size:12px;line-height:1.8;">
+    <b>现阶段不引入（过重，记录备用）</b>：OWL 文件格式 + 推理机（HermiT/ELK）· 上本体（BFO/gUFO）· SHACL 规范全量 · Protégé 工具链。等平台跑通 2-3 家后再评估。
+  </div>
+
+</div>
+</html>

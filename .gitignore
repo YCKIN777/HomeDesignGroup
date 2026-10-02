@@ -1,0 +1,34 @@
+# ===== 环境与密钥（绝不提交） =====
+.env
+.env.*
+!.env.example
+
+# ===== 数据库与运行数据（客户/业务数据，绝不提交） =====
+db/
+data/
+knowledge/
+memory/
+sedimentation/
+output/
+logs/
+exports/
+backups/
+input/
+company_profiles/
+.deps/
+
+# ===== 商业模板与个人文件 =====
+templates/
+*.xlsx
+*.xls
+1.jpg
+_开干提示词.txt
+_每次开场必粘贴.txt
+
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+
+# ===== 自检截图输出 =====
+docs/05-开发架构/workbench-prototype/_shots/

@@ -1,0 +1,71 @@
+<html style="margin:0;padding:0;">
+<title>平台技术架构v1·分层选型图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">平台技术架构 v1 · 分层选型</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">示意 · 待你调整</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">形态：Windows 本地单机起步 · Python 3.12 · 配置驱动 · AI 模型可换。括号内为<b>待你确认的替代项</b>。</div>
+
+  <!-- 各层 -->
+  <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px;">
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;min-width:110px;">前端工作台</div>
+      <div style="font-size:13px;">阶段1-2：简单 Web 页面（FastAPI 托管静态页 + JS）<span style="font-size:11px;color:#E07B39;">（可调：React+Vite 参考你的 Pi 驾驶舱）</span></div>
+      <div style="font-size:11px;color:#8A94A6;">收件箱 / 客户列表 / 派单面板 / 看板</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;min-width:110px;">接入层</div>
+      <div style="font-size:13px;">人工录入 + Excel 导入（兜底）<span style="font-size:11px;color:#8A94A6;">→ 阶段3：M3b 渠道直连（企微/微信）</span></div>
+      <div style="font-size:11px;color:#8A94A6;">线索来源：电话 / 抖音 / 小红书 / 老客转介绍 / 新盘</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;min-width:110px;">Agent 运行时</div>
+      <div style="font-size:13px;">中控（main.py 消息总线，复用 /pause /resume /reject）+ 子 Agent：<br><span style="font-size:12px;">lead_agent（M1/M2/M3a）· dispatch_agent（M4）· scoring_agent（M6）· sop_agent（M7）· invite_agent（M8）· kb_agent（M9）</span></div>
+      <div style="font-size:11px;color:#8A94A6;">人审后发：AI起草(draft) → 销售审批 → 发送</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;min-width:110px;">内核层</div>
+      <div style="font-size:13px;">workflow.py 状态机（workflow.yaml 可配·强约束锁定）· rules.py 规则引擎 · bus.py 消息总线 · config_loader.py 配置加载器</div>
+      <div style="font-size:11px;color:#8A94A6;">八阶段主干 + 三审批点 + 隐蔽工程强约束</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;min-width:110px;">数据层</div>
+      <div style="font-size:13px;">SQLite（单文件零部署）<span style="font-size:11px;color:#E07B39;">（可调：PostgreSQL 多公司时迁）</span> + SQLAlchemy<br><span style="font-size:12px;">customers / projects / messages / followups / sedimentation_items</span></div>
+      <div style="font-size:11px;color:#8A94A6;">客户CRM表 · 项目表 · 收件箱 · 跟进 · 沉淀物</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;min-width:110px;">配置包</div>
+      <div style="font-size:13px;">company_profiles/壹城精工/：terms.yaml · rules.yaml · extensions.yaml · workflow.yaml · manifest.json</div>
+      <div style="font-size:11px;color:#8A94A6;">术语/规则值/扩展字段/节点配置——一切语义不写死</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;min-width:110px;">知识库 + 沉淀</div>
+      <div style="font-size:13px;">knowledge/ 分类文档（阶段3：目录+关键词检索起步）<span style="font-size:11px;color:#E07B39;">（可调：ChromaDB 向量 / 本地 Ollama embedding）</span>；sedimentation/ 提炼物 md + 表</div>
+      <div style="font-size:11px;color:#8A94A6;">谈单知识库（设计/报价/工艺/案例）· 沉淀准入4条·垃圾剔除</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;min-width:110px;">AI 模型层</div>
+      <div style="font-size:13px;">豆包 API（起草/评分/总结）—— model_config.yaml 可换<span style="font-size:11px;color:#E07B39;">（可调：本地 Ollama 小模型，你有部署经验）</span></div>
+      <div style="font-size:11px;color:#8A94A6;">模型名/温度/密钥全配置化，不写死</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:13px;font-weight:700;color:#1F3A4D;min-width:110px;">部署</div>
+      <div style="font-size:13px;">start.ps1 启动 → 浏览器访问本地端口 <span style="font-size:11px;color:#8A94A6;">→ 多公司上云（Docker）后置</span></div>
+      <div style="font-size:11px;color:#8A94A6;">备份=文件备份（db + 配置包 + knowledge + sedimentation）</div>
+    </div>
+
+  </div>
+
+</div>
+</html>

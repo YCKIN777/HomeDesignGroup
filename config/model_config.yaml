@@ -1,0 +1,12 @@
+# 模型配置 — 通过改本文件切换 provider，不改代码（Step 1.5）
+# provider: mock=开发占位(无需key) / doubao=豆包API / ollama=本地Ollama
+provider: mock
+mock:
+  temperature: 0.3
+doubao:
+  model: "doubao-1-5-pro-32k-250115"
+  api_key_env: "DOUBAO_API_KEY"        # 从环境变量读取，勿写入本文件
+  base_url: "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
+ollama:
+  base_url: "http://localhost:11434"
+  model: "qwen2.5:7b"

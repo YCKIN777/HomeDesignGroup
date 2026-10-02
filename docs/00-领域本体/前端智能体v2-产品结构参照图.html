@@ -1,0 +1,77 @@
+<html style="margin:0;padding:0;">
+<title>家装前端智能体v2·产品结构参照图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">家装前端智能体 v2 · 产品结构参照图</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">示意 · 探讨稿</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">参照系：LinkedNav（信号驱动的获客外联产品）× Pi 工作区（自建智能体架构）。核心原则三条：<b>信号驱动</b>（只追有信号的客户）· <b>人审后发</b>（AI 起草，销售批准才发送）· <b>账号安全</b>（轮换限速防封号）。</div>
+
+  <!-- 映射表 -->
+  <div style="margin-top:16px;">
+    <div style="font-size:13px;color:#5B6B7F;font-weight:600;margin-bottom:8px;">LinkedNav 产品模块 → 家装前端智能体模块</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>LinkedIn Profiles</b>（账号池）<br><span style="color:#8A94A6;font-size:12px;">多账号连接·状态·运行中</span></div>
+        <div style="display:flex;align-items:center;font-size:20px;color:#E07B39;">→</div>
+        <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>账号池</b>：企微 / 微信 / 抖音号统一管理<br><span style="color:#8A94A6;font-size:12px;">多销售轮换·每日限速·风控告警（防封号）</span></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>Campaigns</b>（外联活动）<br><span style="color:#8A94A6;font-size:12px;">多活动·触达节奏·自动停止</span></div>
+        <div style="display:flex;align-items:center;font-size:20px;color:#E07B39;">→</div>
+        <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>获客活动</b>：新盘交付期批量触达、转介绍回捞、老客激活、节点（量房/周年）营销<br><span style="color:#8A94A6;font-size:12px;">回复即自动停止序列</span></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>Prompts</b>（提示词/话术）<br><span style="color:#8A94A6;font-size:12px;">场景模板·个性化</span></div>
+        <div style="display:flex;align-items:center;font-size:20px;color:#E07B39;">→</div>
+        <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>话术库</b>：首联 / 跟进 / 邀约 / 回捞，按场景 + 客户上下文（楼盘·户型·预算）生成</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>Unibox</b>（统一收件箱）<br><span style="color:#8A94A6;font-size:12px;">AI 起草→人批准→发送</span></div>
+        <div style="display:flex;align-items:center;font-size:20px;color:#E07B39;">→</div>
+        <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>统一收件箱</b>：所有客户对话汇总；AI 起草回复，销售一键批准后发送<br><span style="color:#8A94A6;font-size:12px;">「人审后发」是红线</span></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>Social Listening</b>（社交监听 98）<br><span style="color:#8A94A6;font-size:12px;">监测话题与意向</span></div>
+        <div style="display:flex;align-items:center;font-size:20px;color:#E07B39;">→</div>
+        <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>社交监听</b>：小红书 / 抖音 / 大众点评——谁在问装修、谁发求助帖、谁评论竞品</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>Active Signals</b>（活跃信号）<br><span style="color:#8A94A6;font-size:12px;">谁准备购买</span></div>
+        <div style="display:flex;align-items:center;font-size:20px;color:#E07B39;">→</div>
+        <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>活跃信号</b>：留资 / 点赞 / 评论 / 私信 / 进店 / 看方案 → 评分 Agent 定级（A/B/C）</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>Contacts 99+ / Unlimited Leads</b></div>
+        <div style="display:flex;align-items:center;font-size:20px;color:#E07B39;">→</div>
+        <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>客户 CRM + 线索池</b>（第一阶段两张主表）</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>MCP / API</b>（对外工具接口）<br><span style="color:#8A94A6;font-size:12px;">80+ 工具·可被智能体调用</span></div>
+        <div style="display:flex;align-items:center;font-size:20px;color:#E07B39;">→</div>
+        <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:10px 14px;flex:1;min-width:220px;font-size:13px;"><b>开放工具接口</b>：获客数据、话术、派单对外可调用（对接派单 / 设计师系统）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pi 架构支撑 -->
+  <div style="margin-top:16px;background:#1F3A4D;border-radius:10px;padding:12px 16px;">
+    <div style="font-size:13px;font-weight:600;color:#C9D8E4;">Pi 工作区架构 → 支撑层（照着你的 Pi 来搭）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:13px;">
+      <span style="background:#2E4C63;color:#fff;border-radius:6px;padding:5px 10px;">驾驶舱 Web UI<br><span style="font-size:11px;color:#A9C0D2;">对话 + 客户列表 + 派单面板</span></span>
+      <span style="background:#2E4C63;color:#fff;border-radius:6px;padding:5px 10px;">持久记忆<br><span style="font-size:11px;color:#A9C0D2;">客户档案 / 跟进日志 / 待办（pi-memory 式）</span></span>
+      <span style="background:#2E4C63;color:#fff;border-radius:6px;padding:5px 10px;">插件机制<br><span style="font-size:11px;color:#A9C0D2;">渠道接入 / 知识库检索 / 数据库</span></span>
+      <span style="background:#2E4C63;color:#fff;border-radius:6px;padding:5px 10px;">浏览器扩展<br><span style="font-size:11px;color:#A9C0D2;">网页拾取客户信息一键录入（page-picker 式）</span></span>
+      <span style="background:#2E4C63;color:#fff;border-radius:6px;padding:5px 10px;">一键部署<br><span style="font-size:11px;color:#A9C0D2;">install/start 脚本（bat 式）</span></span>
+    </div>
+  </div>
+
+  <!-- 流转 -->
+  <div style="margin-top:14px;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.8;">
+    <b>整体流转：</b>信号/线索进入 → 评分分级 → 话术库起草 → <b>Unibox 人工审批后发送</b> → 到店/谈单（谈单知识库支撑）→ 签约 → 派单给设计师。<br>
+    <b>借鉴 LinkedNav 的三条产品原则：</b>① 信号驱动，不盲打；② AI 起草、人批准才发（这正好回答你之前问的"客服自主度"——全自动起草+采集，发送前人工把关）；③ 账号池轮换限速，保护销售微信号。
+  </div>
+
+</div>
+</html>

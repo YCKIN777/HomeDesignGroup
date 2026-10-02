@@ -1,0 +1,111 @@
+<html style="margin:0;padding:0;">
+<title>家装AI智能体平台·领域本体v0.1概念图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">家装 AI 智能体平台 · 领域本体 v0.1 概念图</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">示意 · 探讨稿</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">本体 = 把家装领域的概念、关系、状态、规则显式写出来。它是平台的骨架：数据表怎么建、Agent 怎么分工、知识库怎么分类，都由它定。</div>
+
+  <!-- 概念域 -->
+  <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px;">
+
+    <!-- 客户域 -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <div style="width:76px;font-size:12px;font-weight:700;color:#8A94A6;flex:none;">客户域</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">渠道<br><span style="color:#8A94A6;font-size:11px;">抖音/小红书/平台/转介绍</span></div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">线索<br><span style="color:#8A94A6;font-size:11px;">留资·待验证</span></div>
+      <div style="font-size:13px;color:#E07B39;">转化</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">客户<br><span style="color:#8A94A6;font-size:11px;">已验证·建档</span></div>
+      <div style="font-size:13px;color:#E07B39;">拥有 1..n</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#1F3A4D;color:#fff;border-radius:8px;padding:8px 12px;font-size:14px;font-weight:700;">项目<span style="font-weight:400;font-size:11px;color:#C9D8E4;">（本体中心）</span></div>
+    </div>
+
+    <!-- 项目-方案-报价-合同 -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <div style="width:76px;font-size:12px;font-weight:700;color:#8A94A6;flex:none;">项目域</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">户型<br><span style="color:#8A94A6;font-size:11px;">楼盘/面积/结构</span></div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">方案<br><span style="color:#8A94A6;font-size:11px;">平面/风格/版本</span></div>
+      <div style="font-size:13px;color:#E07B39;">派生</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">报价单<br><span style="color:#8A94A6;font-size:11px;">工程量×单价=金额</span></div>
+      <div style="font-size:13px;color:#E07B39;">锁定</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">合同<br><span style="color:#8A94A6;font-size:11px;">条款/优惠/收款</span></div>
+    </div>
+
+    <!-- 材料域 -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <div style="width:76px;font-size:12px;font-weight:700;color:#8A94A6;flex:none;">材料域</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">报价单</div>
+      <div style="font-size:13px;color:#E07B39;">引用</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">材料/SKU<br><span style="color:#8A94A6;font-size:11px;">主材/辅材/品牌</span></div>
+      <div style="font-size:13px;color:#E07B39;">来自</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">供应商<br><span style="color:#8A94A6;font-size:11px;">价格/账期/到货</span></div>
+    </div>
+
+    <!-- 工程域 -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <div style="width:76px;font-size:12px;font-weight:700;color:#8A94A6;flex:none;">工程域</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">项目</div>
+      <div style="font-size:13px;color:#E07B39;">包含</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">工地<br><span style="color:#8A94A6;font-size:11px;">现场/照片/日报</span></div>
+      <div style="font-size:13px;color:#E07B39;">经历</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">节点<br><span style="color:#8A94A6;font-size:11px;">工序/验收点</span></div>
+      <div style="font-size:13px;color:#E07B39;">通过</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">验收<br><span style="color:#8A94A6;font-size:11px;">清单/整改</span></div>
+    </div>
+
+    <!-- 组织与平台域 -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <div style="width:76px;font-size:12px;font-weight:700;color:#8A94A6;flex:none;">组织域</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">角色<br><span style="color:#8A94A6;font-size:11px;">销售/设计师/预算员/项目经理/工长/总监</span></div>
+      <div style="font-size:13px;color:#E07B39;">负责</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">环节<br><span style="color:#8A94A6;font-size:11px;">获客/设计/预算/材料/工程/总监办</span></div>
+      <div style="width:76px;font-size:12px;font-weight:700;color:#8A94A6;flex:none;">平台域</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">Agent<br><span style="color:#8A94A6;font-size:11px;">归集/评分/跟进/邀约/报价/签约/交接/总监办</span></div>
+      <div style="font-size:13px;color:#E07B39;">服务</div>
+      <div style="font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">环节</div>
+    </div>
+  </div>
+
+  <!-- 状态机 -->
+  <div style="margin-top:20px;">
+    <div style="font-size:13px;color:#5B6B7F;font-weight:600;margin-bottom:8px;">项目生命周期状态机（关系「工地-经历-节点」的实例化）</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+      <span style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:5px 10px;font-size:13px;">量房</span><span style="color:#B8C2CE;">→</span>
+      <span style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:5px 10px;font-size:13px;">设计</span><span style="color:#B8C2CE;">→</span>
+      <span style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:5px 10px;font-size:13px;">报价</span><span style="color:#B8C2CE;">→</span>
+      <span style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:6px;padding:5px 10px;font-size:13px;">签约</span><span style="color:#E07B39;font-size:12px;">← 第一阶段覆盖</span><span style="color:#B8C2CE;">→</span>
+      <span style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;font-size:13px;color:#8A94A6;">开工</span><span style="color:#B8C2CE;">→</span>
+      <span style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;font-size:13px;color:#8A94A6;">水电</span><span style="color:#B8C2CE;">→</span>
+      <span style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;font-size:13px;color:#8A94A6;">泥木</span><span style="color:#B8C2CE;">→</span>
+      <span style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;font-size:13px;color:#8A94A6;">油漆</span><span style="color:#B8C2CE;">→</span>
+      <span style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;font-size:13px;color:#8A94A6;">安装</span><span style="color:#B8C2CE;">→</span>
+      <span style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;font-size:13px;color:#8A94A6;">验收交付</span>
+    </div>
+  </div>
+
+  <!-- 本体四用 -->
+  <div style="margin-top:20px;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:12px 16px;font-size:13px;line-height:1.9;">
+    <span style="font-weight:700;color:#1F3A4D;">本体在平台里的四种用法（这就是"本体论搭架构"的落点）：</span><br>
+    ① <b>数据模型</b>：本体概念表 = 主数据 schema——每个 Agent 读写同一套表，不各写各的；<br>
+    ② <b>状态机</b>：项目生命周期 = 中控 Agent 的路由依据——客户在哪一环，就派哪个 Agent，跨环节自动交接；<br>
+    ③ <b>规则</b>：报价金额 = 工程量 × 单价、审批门槛等 = 确定性引擎——「算得准」的部分不进大模型；<br>
+    ④ <b>知识挂载</b>：每个概念下挂资料（材料库、工艺标准、案例库、话术库）= 知识库分类 = <b>数据需求清单的源头</b>。
+  </div>
+
+</div>
+</html>

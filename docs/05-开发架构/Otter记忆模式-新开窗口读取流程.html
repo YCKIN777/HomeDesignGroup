@@ -1,0 +1,47 @@
+<html style="margin:0;padding:0;">
+<title>Otter记忆模式·新开窗口读取流程</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">Otter 记忆模式 · 新开窗口读取流程</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">解读 Otter.ai + OtterBot · 2026-09-30</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">核心：新窗口 ≠ 失忆。身份必载 + 当前对象近期记忆自动载 + 其余按需检索（问到了才取，带来源）。</div>
+
+  <!-- 读取流程 -->
+  <div style="margin-top:16px;background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:14px 18px;">
+    <div style="font-size:14px;font-weight:700;color:#1F3A4D;">新开窗口读取顺序（罗列）</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;font-size:13px;line-height:1.6;">
+      <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:8px 12px;"><b>① 身份必载</b>：SOUL.md / 公司配置包语义（术语+规则+扩展）+ 角色 prompt —— 每次必载，不占大 token</div>
+      <div style="display:flex;align-items:center;font-size:16px;color:#B8C2CE;">↓</div>
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;"><b>② 当前对象自动载</b>：打开某客户 → 自动加载该客户短记忆（近期对话/跟进/审批）</div>
+      <div style="display:flex;align-items:center;font-size:16px;color:#B8C2CE;">↓</div>
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;"><b>③ 会话内上下文</b>：本会话问答历史保持（sessions 表），可重开旧会话续接</div>
+      <div style="display:flex;align-items:center;font-size:16px;color:#B8C2CE;">↓</div>
+      <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;"><b>④ 提问时按需检索</b>：RAG 检索长记忆（画像/沉淀/知识库）+ 文本记忆（memory 文件）→ top-k 命中 → <b>答案带来源</b>（哪条记录/哪个文件）</div>
+      <div style="display:flex;align-items:center;font-size:16px;color:#B8C2CE;">↓</div>
+      <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;"><b>⑤ 可手动附加范围</b>：@ 指定客户/渠道/楼盘/项目（对齐 Otter 的 "@ Add context"）</div>
+    </div>
+    <div style="font-size:12px;color:#8A94A6;margin-top:10px;"><b>不做什么</b>：不把全部长记忆/全部记忆文件塞进提示词（防 token 爆炸 + 噪音干扰）。</div>
+  </div>
+
+  <!-- 架构对照 -->
+  <div style="margin-top:12px;background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:14px 18px;">
+    <div style="font-size:14px;font-weight:700;color:#1F3A4D;">Otter 记忆架构 ↔ 四层记忆</div>
+    <div style="font-size:12px;color:#243447;line-height:1.9;margin-top:6px;">
+      · 身份/人设（SOUL） ↔ L1 之上的"常驻身份层"——公司语义必载<br>
+      · AI Chat 会话上下文 ↔ L1 即时 + sessions 表<br>
+      · 结构化提炼（摘要/决策/memories） ↔ L3 长记忆（本体结构化）<br>
+      · 可检索语料（转写/频道/文件夹 ↔ vectors） ↔ L3+L4 按需检索（memory_retrieval.py）<br>
+      · 来源标注 ↔ audit_log + 答案引用来源<br>
+      · 每 Agent 独立 agent.db ↔ 每公司独立 db 文件（隔离，已对齐）
+    </div>
+  </div>
+
+  <!-- 结论 -->
+  <div style="margin-top:12px;background:#EEF6EE;border:1px solid #CFE0CF;border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.9;">
+    <b>一句话：Otter 模式 = "身份必载 + 会话内上下文 + 按需检索带来源"。它告诉我们——新开窗口不是把记忆全背一遍，而是"记住你是谁 + 记得眼前这个客户 + 问到什么查什么、查到的带出处"。</b>
+  </div>
+
+</div>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Palantir 本体路线 × 壹城精工平台 借鉴映射</title>
+<style>
+  body{font-family:'Microsoft YaHei',sans-serif;background:#F5F7FA;margin:0;padding:24px;color:#243447}
+  h1{font-size:22px;color:#1F3A4D;margin:0 0 4px}
+  p.sub{font-size:13px;color:#8A94A6;margin:0 0 20px}
+  .legend{display:flex;gap:16px;font-size:12px;color:#5B6B7F;margin-bottom:14px}
+  .lg{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+  .row{display:flex;align-items:stretch;background:#fff;border-radius:10px;margin-bottom:12px;box-shadow:0 2px 10px rgba(31,58,77,.06)}
+  .col{flex:1;padding:14px 16px;min-width:0}
+  .col.src{background:#FDF6EF;border-radius:10px 0 0 10px}
+  .col.mid{flex:0 0 180px;background:#F0F5F9;display:flex;align-items:center;justify-content:center;text-align:center}
+  .col.dst{background:#EFF5F1;border-radius:0 10px 10px 0}
+  .layer{font-size:15px;font-weight:700;margin:0 0 6px}
+  .src .layer{color:#B3601A}.dst .layer{color:#2E7D32}
+  .items{font-size:12px;line-height:1.8;color:#5B6B7F}
+  .items b{color:#243447}
+  .ok{background:#E8F3EC;color:#2E7D32;border:1px solid #BFDCC7;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;display:inline-block}
+  .borrow{background:#EAF1FB;color:#1F5FA8;border:1px solid #BCD0EC;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;display:inline-block}
+  .gap{background:#FBEFEF;color:#B3372C;border:1px solid #EDC9C4;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;display:inline-block}
+  .stage{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+  .s{flex:1;min-width:200px;background:#fff;border-radius:10px;padding:12px 14px;box-shadow:0 2px 10px rgba(31,58,77,.06);font-size:12px}
+  .s b{font-size:13px}
+  .quote{margin-top:16px;background:#1F3A4D;color:#fff;border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.7}
+  .quote i{color:#8FD0FF}
+</style>
+</head>
+<body>
+<h1>Palantir 本体路线 × 壹城精工平台 · 借鉴映射</h1>
+<p class="sub">源头：小红书「企业AI布道师」《本体(Ontology)——AI时代的操作级数字孪生底座》× Palantir 官方文档 × MCP 规范 × 信通院《本体智能研究报告1.0》</p>
+<div class="legend">
+  <span class="lg"><span class="dot" style="background:#E8F3EC"></span>已对齐</span>
+  <span class="lg"><span class="dot" style="background:#EAF1FB"></span>可借鉴（低代价落地）</span>
+  <span class="lg"><span class="dot" style="background:#FBEFEF"></span>差距 + 改良动作</span>
+</div>
+
+<div class="row">
+  <div class="col src">
+    <p class="layer">数据资产层</p>
+    <div class="items">原始系统接入、数据集、<b>可治理语义</b>；Ontology 定义存 JSON、可导出 RDF/OWL（防锁定）</div>
+  </div>
+  <div class="col mid">
+    <span class="gap">差距：无资产目录<br>动作：asset catalog + 语义导出</span>
+  </div>
+  <div class="col dst">
+    <p class="layer">每公司独立库 + knowledge/ + input/</p>
+    <div class="items"><b>10 表 SQLite</b> + 知识库 md + 线索模板；terms.yaml 即语义定义，但<b>未导出标准格式、无数据目录/血缘</b></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col src">
+    <p class="layer">开放API（Ontology MCP）</p>
+    <div class="items">OSDK / Objects Gateway / MCP 标准暴露本体读写，外部 AI 可安全调用</div>
+  </div>
+  <div class="col mid">
+    <span class="borrow">可借鉴：<br>包一层 MCP Server</span>
+  </div>
+  <div class="col dst">
+    <p class="layer">/api/* FastAPI 路由 + bus 总线</p>
+    <div class="items">leads/inbox/dispatch/kb/memory 等<b>10 组路由</b>已具 API 形态，但<b>无 MCP 标准出口</b>，外部 Agent 无法直接接入</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col src">
+    <p class="layer">本体逻辑层</p>
+    <div class="items">Object/Link/<b>Action</b>/Function 四件套；本体=数据+逻辑+动作+安全，<b>表示决策而非数据</b></div>
+  </div>
+  <div class="col mid">
+    <span class="borrow">可借鉴：<br>Action 注册表显式化</span>
+  </div>
+  <div class="col dst">
+    <p class="layer">terms.yaml + workflow + rules + agents</p>
+    <div class="items">术语注册表(6)+关系白名单(5)+<b>状态机</b>+规则+config_loader 校验；权限矩阵已落地；但动作分散在 agents，<b>未显式建模为可治理单元</b></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col src">
+    <p class="layer">AI 应用层</p>
+    <div class="items">AIP：LLM/Agent 在本体边界内推理、建议、<b>执行动作</b>，全审计、场景仿真</div>
+  </div>
+  <div class="col mid">
+    <span class="ok">已对齐：<br>llm 可切 mock/doubao/ollama</span>
+  </div>
+  <div class="col dst">
+    <p class="layer">agents + llm 抽象 + 工作台 + 四层记忆</p>
+    <div class="items">6 agents 闭环获客→派单；<b>llm.py 三 provider 可切换</b>（对齐"挂载开源/国产模型"）；L1-L4 记忆 + 人审后发 + 全审计</div>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="s"><b>阶段1 · POC 构建</b><br><span class="ok">✅ 已对齐</span>：前端闭环 POC（M1-M9+）已全量验证，正是"核心业务抽象先行"</div>
+  <div class="s"><b>阶段2 · 读写链路分离</b><br><span class="gap">⚠ 差距</span>：SQLite 单库单写。改良：WAL + 读写连接分离，预留 Postgres 适配层（对齐"防深度锁定"）</div>
+  <div class="s"><b>阶段3 · 本体化 + 挂开源模型</b><br><span class="ok">✅ 已对齐</span>：配置包语义化 + ollama 本地模型挂载已具备，正是"学其神弃其形"</div>
+</div>
+
+<div class="quote">
+  <i>「学其神而弃其形：我们需要本体的行动力，但更需要架构的自由度。」</i>
+  —— 视频主张 × 我们的轻量自建路线（通用内核+配置定制+数据隔离+语义沉淀）立场一致；Palantir 的 OMS/OSS/对象库微服务对单公司场景属过度工程，<b>学其神</b>即采纳 Action 显式化 / MCP 出口 / 语义导出 / 决策捕获四件事。
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+﻿{
+    "cad_agent": {
+        "needs_human_review": true
+    },
+    "output_dir": "H:\\AgentProjects\\HomeDesignGroup\\output"
+}

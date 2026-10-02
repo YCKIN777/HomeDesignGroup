@@ -1,0 +1,42 @@
+<html style="margin:0;padding:0;">
+<title>家装AI智能体平台·整体技术框架总图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">家装 AI 智能体平台 · 整体技术框架</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">v1 总纲 · 定稿即锁定</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">一句话：本体系统是记忆的唯一骨架（不加其他记忆方式）；内核锁定、配置定制、数据隔离、语义沉淀、Otter 式读取。Windows 本地单机起步。</div>
+
+  <!-- 主栈 -->
+  <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px;">
+
+    <div style="background:#1F3A4D;border-radius:8px;padding:9px 14px;color:#fff;font-size:13px;"><b>前端工作台（简单 Web 页）</b>：登录 → 收件箱（审批队列）→ 客户列表/详情 → 派单 → 看板</div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.6;"><b>API 契约（FastAPI · ≤10 接口）</b>：POST /customers 建档｜GET /customers 列表｜POST /messages 起草｜POST /messages/{id}/approve·reject｜POST /dispatch｜GET /todos｜GET /stats｜GET /health</div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.6;"><b>Agent 运行时（中控 + 子 Agent）</b>：main.py 消息总线（/pause /resume /reject /approve /dispatch）· lead_agent（M1/M2/M3a）· dispatch_agent（M4）· scoring_agent（M6）· sop_agent（M7）· invite_agent（M8）· kb_agent（M9）· llm.py 模型抽象（豆包/Ollama 可换）</div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.6;"><b>内核层（锁定）</b>：workflow.py 状态机（八阶段主干·强约束锁定）· rules.py 规则引擎 · config_loader.py 配置加载器（schema 校验·DOS-DP 式）· bus.py 消息总线</div>
+
+    <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.6;"><b>本体系统（记忆唯一骨架 ★）</b>：术语注册表（terms.yaml：id/定义/父类/来源/状态）· 关系白名单（part_of / preceded_by / has_participant / has_responsible / derived_from）· 状态机（workflow.yaml）· 沉淀中心（提炼准入4条·垃圾剔除）· 记忆文件（YAML frontmatter：concept_id/relation/state）</div>
+
+    <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.6;"><b>四层记忆（本体驱动 · Otter 读取模式）</b>：L1 即时（session 表·会话内）→ L2 短（messages/followups/audit·30天）→ L3 长（客户画像+配置包+沉淀+知识库·本体结构化）→ L4 文本（memory/ md 文件）<br><span style="font-size:11px;color:#5B6B7F;">读取：身份必载 → 当前客户自动载 L2 → 提问按需检索 L3/L4（带来源）→ 会话内保持；不引入其他记忆方式</span></div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.6;"><b>数据层（SQLite·每公司一库）</b>：customers / projects / messages / followups / sedimentation_items / users / audit_log / sessions + company_profiles/壹城精工/（terms·rules·extensions·workflow·manifest）+ knowledge/ + sedimentation/ + memory/</div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.6;"><b>接入层</b>：人工录入 + Excel 导入（兜底）→ 阶段3 M3b 渠道直连（企微/微信）</div>
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.6;"><b>横切工程件</b>：权限（users·角色矩阵）· 审计（audit_log·人审后发可追溯）· 调度（SOP 提醒轮询）· 指标（24h首联率/响应时长/派单及时率/转化）· 测试（schema单测→Agent单测→全链路验收→指标核对）· 运维（init/backup/health）</div>
+
+    <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:9px 14px;font-size:12px;line-height:1.6;"><b>回路（结构不动·迭代在扩展点）</b>：壹城试跑 → 提炼（去噪·去重·匿名化）→ 沉淀中心（只收优质·垃圾剔除）→ 分拣评审 → 内核 v0.3 或反哺配置包/知识库；数据隔离 × 语义共享分离</div>
+
+  </div>
+
+  <!-- 原则 -->
+  <div style="margin-top:12px;background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:12px 16px;font-size:12px;line-height:1.9;color:#243447;">
+    <b>五条总原则</b>：① 结构锁定，迭代只发生在扩展点 ② 一切语义走配置包，代码零写死 ③ 数据隔离不共享，语义提炼进沉淀中心 ④ 记忆本体化：不加其他记忆方式，读取按 Otter 模式 ⑤ 单公司先行（壹城），多租户/上云后置
+  </div>
+
+</div>
+</html>

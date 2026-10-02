@@ -1,0 +1,118 @@
+<html style="margin:0;padding:0;">
+<title>家装全链路业务逻辑图·吃透版v1</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">家装全链路业务逻辑 · 吃透版 v1</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">示意 · 行业通用逻辑，公司细节待校准</div>
+  </div>
+
+  <!-- 主链 -->
+  <div style="margin-top:16px;">
+    <div style="font-size:13px;color:#5B6B7F;font-weight:600;margin-bottom:8px;">八阶段主链（前端=①获客→③签约；后端=④材料→⑦售后；⑧横贯全程）</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;">
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 12px;flex:1;min-width:150px;">
+        <div style="font-size:14px;font-weight:700;color:#1F3A4D;">① 获客</div>
+        <div style="font-size:12px;color:#5B6B7F;line-height:1.6;margin-top:4px;">渠道投放·留资·首联·邀约到店·量房安排</div>
+        <div style="font-size:11px;color:#8A94A6;margin-top:4px;">交付：线索→客户档案</div>
+        <div style="font-size:11px;color:#C0392B;margin-top:2px;">坑：线索跟丢·无效线索·抢单</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 12px;flex:1;min-width:150px;">
+        <div style="font-size:14px;font-weight:700;color:#1F3A4D;">② 量房设计</div>
+        <div style="font-size:12px;color:#5B6B7F;line-height:1.6;margin-top:4px;">上门实测·平面方案·效果图/施工图·改稿</div>
+        <div style="font-size:11px;color:#8A94A6;margin-top:4px;">交付：户型图·方案（多版本）</div>
+        <div style="font-size:11px;color:#C0392B;margin-top:2px;">坑：改稿无底洞·效果图失真</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #F2D3B5;border-radius:8px;padding:10px 12px;flex:1;min-width:150px;">
+        <div style="font-size:14px;font-weight:700;color:#1F3A4D;">③ 报价签约</div>
+        <div style="font-size:12px;color:#5B6B7F;line-height:1.6;margin-top:4px;">工程量·套餐/清单报价·增项规则·合同</div>
+        <div style="font-size:11px;color:#8A94A6;margin-top:4px;">交付：报价单·合同</div>
+        <div style="font-size:11px;color:#E07B39;margin-top:2px;">△审批：折扣·优惠</div>
+        <div style="font-size:11px;color:#C0392B;">坑：低开高走·增项扯皮</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 12px;flex:1;min-width:150px;">
+        <div style="font-size:14px;font-weight:700;color:#1F3A4D;">④ 材料供应链</div>
+        <div style="font-size:12px;color:#5B6B7F;line-height:1.6;margin-top:4px;">选材（业主+设计师）·集采/代购·下单·到货验收</div>
+        <div style="font-size:11px;color:#8A94A6;margin-top:4px;">交付：材料订单·进场计划</div>
+        <div style="font-size:11px;color:#C0392B;margin-top:2px;">坑：以次充好·货期延误·色差</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 12px;flex:1;min-width:150px;">
+        <div style="font-size:14px;font-weight:700;color:#1F3A4D;">⑤ 施工工程</div>
+        <div style="font-size:12px;color:#5B6B7F;line-height:1.6;margin-top:4px;">交底·拆改·水电·防水·泥木·油漆·安装</div>
+        <div style="font-size:11px;color:#8A94A6;margin-top:4px;">交付：工地日报·进度·签证</div>
+        <div style="font-size:11px;color:#E07B39;margin-top:2px;">△审批：变更签证</div>
+        <div style="font-size:11px;color:#C0392B;">坑：工期延误·质量事故·返工</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 12px;flex:1;min-width:150px;">
+        <div style="font-size:14px;font-weight:700;color:#1F3A4D;">⑥ 验收交付</div>
+        <div style="font-size:12px;color:#5B6B7F;line-height:1.6;margin-top:4px;">四次节点验收（水电/泥木/油漆/竣工）·整改·交付资料</div>
+        <div style="font-size:11px;color:#8A94A6;margin-top:4px;">交付：验收单·保修卡·水电走向图</div>
+        <div style="font-size:11px;color:#E07B39;margin-top:2px;">△审批：验收放行</div>
+        <div style="font-size:11px;color:#C0392B;">坑：标准扯皮·尾款拖欠</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:18px;color:#B8C2CE;">→</div>
+      <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:10px 12px;flex:1;min-width:150px;">
+        <div style="font-size:14px;font-weight:700;color:#1F3A4D;">⑦ 售后质保</div>
+        <div style="font-size:12px;color:#5B6B7F;line-height:1.6;margin-top:4px;">报修受理·派单上门·维修·回访</div>
+        <div style="font-size:11px;color:#8A94A6;margin-top:4px;">交付：质保记录·客诉闭环</div>
+        <div style="font-size:11px;color:#C0392B;margin-top:2px;">坑：响应慢·口碑受损·成本失控</div>
+      </div>
+    </div>
+    <div style="background:#1F3A4D;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:12px;color:#C9D8E4;">⑧ 经营财务（总监办 · 横贯全程）：漏斗·签单额·毛利·现金流·工期达标·满意度·转介绍 —— 所有阶段的数字最终都汇到这里</div>
+  </div>
+
+  <!-- 三条流 -->
+  <div style="margin-top:16px;">
+    <div style="font-size:13px;color:#5B6B7F;font-weight:600;margin-bottom:8px;">三条横贯的流（吃透家装，关键看这三条流怎么走）</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:13px;">
+        <span style="font-weight:700;color:#E07B39;">💰 钱流：</span>
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:3px 8px;">定金（签约）</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:3px 8px;">首付（开工前）</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:3px 8px;">中期款（水电/泥木节点）</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:3px 8px;">尾款（验收交付）</span>
+        <span style="color:#8A94A6;font-size:12px;">（比例因公司而异，待校准）</span>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:13px;">
+        <span style="font-weight:700;color:#1F3A4D;">👥 人流：</span>
+        <span style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:3px 8px;">市场/销售</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:3px 8px;">设计师</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:3px 8px;">预算员</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:3px 8px;">项目经理/工长/监理</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:3px 8px;">售后</span>
+        <span style="color:#8A94A6;font-size:12px;">（每个交接点都是信息断点，也是 AI 要补的地方）</span>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:8px 12px;font-size:13px;">
+        <span style="font-weight:700;color:#2E7D32;">📋 信息流（= 本体数据主线）：</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:3px 8px;">线索</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:3px 8px;">客户档案</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:3px 8px;">项目</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:3px 8px;">报价/合同</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:3px 8px;">材料订单</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:3px 8px;">工地/节点</span><span style="color:#B8C2CE;">→</span>
+        <span style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:3px 8px;">验收/质保</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 痛点 -->
+  <div style="margin-top:16px;background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:12px 16px;">
+    <div style="font-size:13px;color:#5B6B7F;font-weight:600;">行业七大痛点 → AI 平台抓手（每个痛点对应一个 Agent 的主战场）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:12px;color:#243447;">
+      <span style="background:#EDF2F5;border-radius:6px;padding:4px 10px;">1 获客贵转化低 → 获客/客服/评分 Agent</span>
+      <span style="background:#EDF2F5;border-radius:6px;padding:4px 10px;">2 报价不透明增项扯皮 → 报价 Agent + 增项规则</span>
+      <span style="background:#EDF2F5;border-radius:6px;padding:4px 10px;">3 设计周期长改稿多 → 设计 Agent 辅助</span>
+      <span style="background:#EDF2F5;border-radius:6px;padding:4px 10px;">4 工地靠人盯信息滞后 → 工程 Agent（日报/照片）</span>
+      <span style="background:#EDF2F5;border-radius:6px;padding:4px 10px;">5 材料供应链乱 → 材料 Agent</span>
+      <span style="background:#EDF2F5;border-radius:6px;padding:4px 10px;">6 老板看不到实时数据 → 总监办看板</span>
+      <span style="background:#EDF2F5;border-radius:6px;padding:4px 10px;">7 售后响应慢口碑损 → 售后 Agent（后期）</span>
+    </div>
+  </div>
+
+</div>
+</html>

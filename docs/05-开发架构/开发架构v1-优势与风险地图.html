@@ -1,0 +1,60 @@
+<html style="margin:0;padding:0;">
+<title>开发架构v1·优势与风险地图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">开发架构 v1 · 优势与风险地图</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">评估稿 · 2026-09-29</div>
+  </div>
+
+  <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;">
+
+    <!-- 优势 -->
+    <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:10px;padding:14px;flex:1;min-width:300px;">
+      <div style="font-size:14px;font-weight:700;color:#2E7D32;">优势（9）</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;font-size:12px;line-height:1.6;">
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">① 范围收敛可执行：MVP只5个模块，不空谈</div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">② 阶段依赖清晰，每阶段有产出+验收，有序推进</div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">③ 资料清单A/B/C与阶段对齐，你知道备什么</div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">④ 贯彻内核锁定：M5配置加载，语义不写死</div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">⑤ 里程碑可验收：走通/演示/计数，不是"差不多"</div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">⑥ 复用原型资产：消息总线、/pause /reject、配置模式</div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">⑦ 人审后发内置在M3，规避自动回复风险</div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">⑧ P2后置明确，不背多租户/社交监听大工程</div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:6px 10px;">⑨ 技术分层简单，不过度工程</div>
+      </div>
+    </div>
+
+    <!-- 劣势/风险 -->
+    <div style="background:#FFF0EC;border:1px solid #F2C9BD;border-radius:10px;padding:14px;flex:1;min-width:300px;">
+      <div style="font-size:14px;font-weight:700;color:#B3402A;">劣势/风险（9）</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;font-size:12px;line-height:1.6;">
+        <div style="background:#fff;border:1px solid #F2C9BD;border-radius:6px;padding:6px 10px;"><b>🔴 R1 M3收件箱是隐藏重活</b>：AI起草+审批+渠道直连，工作量≈其他4个模块之和；渠道接不通则MVP卡住</div>
+        <div style="background:#fff;border:1px solid #F2C9BD;border-radius:6px;padding:6px 10px;"><b>🔴 R2 阶段0卡资料</b>：A类8项给不齐，阶段0卡死；文档串行=骨架开发干等</div>
+        <div style="background:#fff;border:1px solid #F2C9BD;border-radius:6px;padding:6px 10px;"><b>🟠 R3 MVP范围未经验证</b>：无真实线索量/渠道占比，M1归集形态可能返工</div>
+        <div style="background:#fff;border:1px solid #F2C9BD;border-radius:6px;padding:6px 10px;"><b>🟠 R4 验收偏演示级</b>：无业务指标（响应时长/24h首联率/派单及时率）</div>
+        <div style="background:#fff;border:1px solid #F2C9BD;border-radius:6px;padding:6px 10px;"><b>🟠 R5 技术选型未定</b>：工作台 React还是简单页，不定则骨架返工</div>
+        <div style="background:#fff;border:1px solid #F2C9BD;border-radius:6px;padding:6px 10px;">🟡 R6 知识库(M9)范围粗：挂什么、检索质量怎么验，易变文档堆</div>
+        <div style="background:#fff;border:1px solid #F2C9BD;border-radius:6px;padding:6px 10px;">🟡 R7 模块边界细碎：M2/M7跟进记录边界，实现时易扯皮</div>
+        <div style="background:#fff;border:1px solid #F2C9BD;border-radius:6px;padding:6px 10px;">🟡 R8 流程假设未校准：派单若是"群发"而非"单派"，改扩展点还是封闭项要现场纪律</div>
+        <div style="background:#fff;border:1px solid #F2C9BD;border-radius:6px;padding:6px 10px;">🟡 R9 单点人力依赖：全程一人开发，阶段4试跑期间bug修复与迭代抢时间</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 关键判断+对策 -->
+  <div style="margin-top:12px;background:#fff;border:1px solid #D7DEE7;border-radius:10px;padding:14px;">
+    <div style="font-size:14px;font-weight:700;color:#1F3A4D;">关键判断与对冲</div>
+    <div style="font-size:13px;color:#243447;line-height:1.9;margin-top:6px;">
+      整体判断：这套开发架构<b>优势在"可执行、有序、贯彻锁定"；劣势集中在三处——M3渠道接入是隐藏重活、阶段0用户是瓶颈、范围靠假设待真实业务校准。</b><br>
+      建议动作（不改结构，只调推进方式）：<br>
+      ① <b>M3 拆两步</b>：M3a AI起草+审批+复制/发送模板（本阶段跑通闭环）；M3b 渠道直连（后置）——避免 MVP 卡死在渠道上<br>
+      ② <b>阶段0/1 并行</b>：骨架开发不等资料，配置加载器按通用格式先做，资料后填<br>
+      ③ <b>阶段2 验收加真实验证</b>：用 3-5 条真实线索全链路跑一遍<br>
+      ④ <b>阶段4 补业务指标</b>：24h首联率 / 响应时长中位数 / 派单及时率<br>
+      ⑤ <b>流程假设现场纪律</b>：假设错→先判断扩展点还是封闭项，禁止随手改内核
+    </div>
+  </div>
+
+</div>
+</html>

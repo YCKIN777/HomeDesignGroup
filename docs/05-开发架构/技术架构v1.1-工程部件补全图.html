@@ -1,0 +1,58 @@
+<html style="margin:0;padding:0;">
+<title>技术架构v1.1·工程部件补全图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">技术架构 v1.1 · 工程部件补全</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">v1 选型不变 · 补齐工程件</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">v1 已覆盖"选型"，v1.1 补上"工程部件"——橙标为新增。选型决策不变，新增件按阶段插入。</div>
+
+  <!-- 分层 + 横切新增 -->
+  <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px;">
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.7;">
+      <b>🆕 认证与权限（横切）</b>：users 表 + 角色（主管/销售/客服）+ 简单登录；销售只见自己线索，主管可审批/看全部。阶段2 先"单角色兜底"。
+    </div>
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.7;">
+      <b>🆕 审计与日志（横切）</b>：audit_log 表——谁、何时、对哪条、做了什么（审批/驳回/修改/派单）；logs 目录轮转。人审后发必须可追溯。
+    </div>
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.7;">
+      <b>🆕 定时任务（横切）</b>：SOP 提醒调度——每天扫 followups.next_at 到期项，生成提醒（站内待办）。挂 main.py 后台，阶段3 启用。
+    </div>
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.7;">
+      <b>🆕 API 契约 + 页面路由</b>：FastAPI 接口清单（线索 CRUD/审批/派单/看板 ≤10 个）+ 工作台页面（登录→收件箱→客户列表→详情→派单→看板）。
+    </div>
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.7;">
+      <b>🆕 LLM 抽象层</b>：llm.py 封装（chat + provider 可插拔）——豆包↔Ollama 切换只改 model_config.yaml，不改业务代码。
+    </div>
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.7;">
+      <b>🆕 指标口径与采集</b>：24h 首联率 / 响应时长 / 派单及时率 / 线索转化——口径定义 + 看板 API 计算位置（SQL 视图），阶段4 用。
+    </div>
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.7;">
+      <b>🆕 测试与验证</b>：schema 校验单测 → Agent 单测 → MVP 全链路验收脚本（3-5 条真实线索）→ 阶段4 业务指标核对。
+    </div>
+
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.7;">
+      <b>🆕 备份与恢复 + 初始化运维</b>：一键备份脚本（db+配置包+knowledge+sedimentation+logs）· 恢复流程 · init 脚本（建库建表+校验配置包）· 健康检查。
+    </div>
+
+    <div style="background:#fff;border:1px solid #D7DEE7;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.7;">
+      <b>v1 已有（不变）</b>：FastAPI 后端 · 简单 Web 工作台 · SQLite+SQLAlchemy · YAML 配置包 · 自研状态机 · 消息总线 · 知识库目录检索 · 豆包 API（可换）· 站内待办 · start.ps1 本地部署 · 沉淀中心表。
+    </div>
+
+  </div>
+
+  <!-- 结论 -->
+  <div style="margin-top:12px;background:#EEF6EE;border:1px solid #CFE0CF;border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.9;">
+    <b>结论：选型不变、工程件补齐。8 项新增件里 5 项是阶段 2 开工前要定（权限/审计/API 契约/LLM 抽象/初始化运维），3 项阶段 3-4 前要定（调度/指标口径/测试脚本）。补上后，这套架构就"能开工、能验收、能长期跑"。</b>
+  </div>
+
+</div>
+</html>

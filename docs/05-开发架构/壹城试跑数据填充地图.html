@@ -1,0 +1,58 @@
+<html style="margin:0;padding:0;">
+<title>壹城试跑·数据填充地图</title>
+<div style="width:100%;box-sizing:border-box;background:#F5F7FA;font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:20px 24px;color:#243447;">
+
+  <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+    <div style="font-size:22px;font-weight:700;">壹城试跑 · 数据填充地图</div>
+    <div style="font-size:13px;color:#8A94A6;border:1px dashed #C4CDD8;border-radius:4px;padding:2px 8px;">每项数据 → 填到哪里 → 改完重启</div>
+  </div>
+  <div style="font-size:13px;color:#5B6B7F;margin-top:4px;">三色分区：<span style="color:#1F6F4B;">配置包（启动时加载，改完必须重启）</span> · <span style="color:#B26A00;">知识库/记忆（随时可加）</span> · <span style="color:#1F3A4D;">运行时数据（API/CSV 录入）</span></div>
+
+  <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px;font-size:12px;line-height:1.7;">
+
+    <!-- 配置包 -->
+    <div style="background:#EEF6EE;border:1px solid #CFE0CF;border-radius:8px;padding:10px 14px;">
+      <b style="color:#1F6F4B;">① 配置包 company_profiles/壹城精工/（公司语义·改完重启服务）</b>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:5px 10px;">付款比例 → <b>rules.yaml payment_stages</b></div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:5px 10px;">折扣阈值 → <b>rules.yaml discount</b></div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:5px 10px;">SOP节奏 → <b>rules.yaml sop</b></div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:5px 10px;">质保 → <b>rules.yaml warranty</b></div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:5px 10px;">评分阈值 → <b>rules.yaml scoring</b></div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:5px 10px;">验收节点 → <b>workflow.yaml transitions</b></div>
+        <div style="background:#fff;border:1px solid #CFE0CF;border-radius:6px;padding:5px 10px;">组织分工 → <b>users 表</b>（账号+角色）</div>
+      </div>
+    </div>
+
+    <!-- 知识库/记忆 -->
+    <div style="background:#FFF6EE;border:1px solid #F2D3B5;border-radius:8px;padding:10px 14px;">
+      <b style="color:#B26A00;">② 知识库/记忆（随试跑沉淀，随时可加）</b>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:5px 10px;">报价结构 → <b>knowledge/01-报价*.md</b></div>
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:5px 10px;">工艺口径 → <b>knowledge/02-工艺*.md</b></div>
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:5px 10px;">案例卖点 → <b>knowledge/03-案例*.md</b></div>
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:5px 10px;">渠道占比/复盘 → <b>memory/*.md</b>（frontmatter）</div>
+        <div style="background:#fff;border:1px solid #F2D3B5;border-radius:6px;padding:5px 10px;">经验提炼 → <b>POST /api/sedimentation</b>（准入4条）</div>
+      </div>
+    </div>
+
+    <!-- 运行时 -->
+    <div style="background:#EDF2F5;border:1px solid #D7DEE7;border-radius:8px;padding:10px 14px;">
+      <b style="color:#1F3A4D;">③ 运行时数据（日常操作，API/CLI 即填即用）</b>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;">真实线索 → <b>input/线索导入模板.csv</b> 或 POST /api/leads</div>
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;">AI密钥 → <b>环境变量 DOUBAO_API_KEY</b> + model_config.yaml</div>
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;">渠道凭证 → <b>M3b webhook 转发器</b>（企微/微信）</div>
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;">跟进/邀约 → <b>CLI /invite /status</b></div>
+        <div style="background:#fff;border:1px solid #D7DEE7;border-radius:6px;padding:5px 10px;">指标复盘 → <b>GET /api/stats</b></div>
+      </div>
+    </div>
+
+    <!-- 试跑节奏 -->
+    <div style="background:#1F3A4D;border-radius:8px;padding:10px 14px;color:#fff;font-size:12px;line-height:1.8;">
+      <b>试跑节奏</b>：每日 收件箱审批不落（AI起草→人审后发）+ SOP待办清空｜每周一 /api/stats 指标对账、周五沉淀周会（准入4条）｜月底 沉淀评审 + 配置包迭代≥2轮 + <b>封闭项零改动</b>核对
+    </div>
+
+  </div>
+</div>
+</html>
