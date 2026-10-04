@@ -32,3 +32,7 @@ __pycache__/
 
 # ===== 自检截图输出 =====
 docs/05-开发架构/workbench-prototype/_shots/
+
+# 归档目录（旧版本/旧入口，不入仓库）
+archive/
+

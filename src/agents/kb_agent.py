@@ -21,8 +21,15 @@ class KbAgent(BaseAgent):
     ]
 
     def search(self, query: str, top_k: int = 5) -> list:
-        """关键词检索 knowledge/**/*.md，带来源路径"""
+        """关键词检索 knowledge/**/*.md，带来源路径。
+        中文整句分词缺失时会退化为整句匹配导致命中 0，故追加 bigram 切分增强。"""
         words = [w for w in re.findall(r"[\u4e00-\u9fa5A-Za-z0-9]+", query.lower()) if w]
+        # bigram 增强：含中文的词切成 2 字片段，提升短句/术语命中
+        grams = []
+        for w in words:
+            if len(w) >= 2 and re.search(r"[\u4e00-\u9fa5]", w):
+                grams.extend(w[i:i + 2] for i in range(len(w) - 1))
+        terms = words + [g for g in grams if len(g) == 2]
         hits = []
         for path in glob.glob(os.path.join(KNOWLEDGE_DIR, "**", "*.md"), recursive=True):
             try:
@@ -30,7 +37,7 @@ class KbAgent(BaseAgent):
             except OSError:
                 continue
             low = text.lower()
-            score = sum(1 for w in words if w in low)
+            score = sum(1 for w in terms if w in low)
             if score:
                 title = os.path.splitext(os.path.basename(path))[0]
                 first = next((l for l in text.splitlines() if l.strip() and not l.startswith("#")), "")
