@@ -17,7 +17,7 @@ class InviteAgent(BaseAgent):
     ]
 
     def __init__(self):
-        self.mm = MemoryManager("壹城精工")
+        self.mm = MemoryManager()
         self.cfg = config_loader.load_profile("壹城精工")
 
     def create_invite(self, user: str, customer_id: int, when: str = "",

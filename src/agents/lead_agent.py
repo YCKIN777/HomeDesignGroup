@@ -19,7 +19,7 @@ class LeadAgent(BaseAgent):
     ]
 
     def __init__(self):
-        self.mm = MemoryManager("壹城精工")
+        self.mm = MemoryManager()
         self.cfg = config_loader.load_profile("壹城精工")
 
     # ---------- M1 线索归集（电话去重合并） ----------

@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+import sys
+from pathlib import Path
+
+# 获取当前api_server.py所在目录
+current_dir = Path(__file__).parent
+# 添加到python搜索路径
+sys.path.insert(0, str(current_dir))
+
 """
 api_server.py — FastAPI 骨架（Step 1.7）
 路由（阶段2 再扩业务接口）：
@@ -11,8 +19,8 @@ import hashlib
 import os
 import sqlite3
 import threading
-
-from fastapi import FastAPI, Request
+import traceback
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
 
@@ -29,32 +37,44 @@ from routers import (leads, inbox, dispatch, config, todos, kb,  # noqa: E402
                      team_api)
 
 app = FastAPI(title="家装AI智能体平台", version="0.2.1-Sched")
-mm = MemoryManager(COMPANY)
+mm = MemoryManager()
+# ============ WebChat 聊天界面挂载【新增】=========
+from fastapi.staticfiles import StaticFiles
+from extensions.webchat.router import router as webchat_router
+# 挂载WebChat接口路由
+app.include_router(webchat_router, prefix="/ext-webchat/api", tags=["扩展WebChat"])
+# 挂载前端静态页面目录
+static_dir = current_dir / "extensions" / "webchat" / "static"
+print("【WebChat静态目录】", static_dir)
+app.mount("/ext-webchat", StaticFiles(directory=str(static_dir), html=True), name="webchat_static")
+
+# 兜底路由
+from fastapi.responses import FileResponse
+@app.get("/ext-webchat/")
+async def webchat_index():
+    return FileResponse(static_dir / "index.html")
 
 
 # ---------- M7 后台调度器：每 60 秒扫一次 SOP 到期 ----------
 _sop_stop = threading.Event()
-
 
 def _sop_loop():
     while not _sop_stop.wait(60):      # 每 60 秒一次
         try:
             SopAgent().check_due()
         except Exception:
-            pass
-
+            # 打印异常堆栈，方便调试，不再静默吞错
+            traceback.print_exc()
 
 @app.on_event("startup")
 def _start_sop_scheduler():
     threading.Thread(target=_sop_loop, daemon=True).start()
-
 
 @app.post("/api/sop/run")
 def sop_run():
     """手动触发一次 SOP 扫描（调试/演示用）"""
     todos = SopAgent().check_due()
     return {"checked": True, "open_todos": len(todos)}
-
 
 # ---------- Step 4.8：MCP 出口（JSON-RPC 2.0 over HTTP） ----------
 @app.post("/mcp")
@@ -70,6 +90,7 @@ for r in (leads.router, inbox.router, dispatch.router, config.router,
           stats.router, sedimentation.router, decisions.router, core_api.router,
                        agent_api.router, team_api.router):
     app.include_router(r)
+
 
 LOGIN_PAGE = """<!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>家装AI智能体平台·登录</title>
@@ -108,11 +129,7 @@ async function login(){
     }
   }catch(e){msg.className='err';msg.textContent='无法连接服务';}
 }
-
-
-
 </script></body></html>"""
-
 DASHBOARD_PAGE = """<!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><title>家装AI智能体平台·工作台</title>
 <style>
@@ -234,7 +251,6 @@ a{color:var(--brand)}
   <section id="s-stats"><h2>数据看板</h2><p class="panel-sub">业务指标实时对账（阶段 4）· 壹城精工</p>
     <div class="cards" id="t-stats"></div>
   </section>
-
   <section id="s-leads" style="display:none"><h2>客户线索</h2><p class="panel-sub">获客归集 · 建档打标 · 评分派单</p>
     <div class="row">
       <input id="n_phone" placeholder="手机号*"><input id="n_name" placeholder="姓名">
@@ -252,22 +268,18 @@ a{color:var(--brand)}
     <table><thead><tr><th>ID</th><th>姓名</th><th>手机</th><th>楼盘</th><th>预算</th><th>状态</th><th>评分</th><th>操作</th></tr></thead><tbody id="t-leads"></tbody></table>
     <div class="msg" id="m-leads"></div>
   </section>
-
   <section id="s-inbox" style="display:none"><h2>收件箱（AI 起草 · 人审后发）</h2>
     <table><thead><tr><th>ID</th><th>客户</th><th>内容</th><th>时间</th><th>操作</th></tr></thead><tbody id="t-inbox"></tbody></table>
     <div class="msg" id="m-inbox"></div>
   </section>
-
   <section id="s-todos" style="display:none"><h2>SOP 待办</h2>
     <table><thead><tr><th>ID</th><th>客户</th><th>事项</th><th>操作</th></tr></thead><tbody id="t-todos"></tbody></table>
     <div class="msg" id="m-todos"></div>
   </section>
-
   <section id="s-projects" style="display:none"><h2>项目（派单结果）</h2>
     <table><thead><tr><th>ID</th><th>客户</th><th>状态</th><th>设计师</th><th>创建时间</th></tr></thead><tbody id="t-projects"></tbody></table>
     <div class="msg" id="m-projects"></div>
   </section>
-
   <section id="s-carrier" style="display:none"><h2>项目承接 · 设计 / 报价 / 工程（阶段5）</h2>
     <div class="row">
       <input id="cp_pid" placeholder="项目 ID，如 20" style="flex:1">
@@ -275,15 +287,12 @@ a{color:var(--brand)}
     </div>
     <div id="t-carrier" class="msg" style="min-height:30px;line-height:1.7"></div>
   </section>
-
   <section id="s-kb" style="display:none"><h2>谈单知识库</h2>
     <div class="row"><input id="kbq" placeholder="关键词，如：隐蔽工程 / 全包">
     <button class="btn" onclick="searchKb()">检索</button></div>
     <div id="t-kb" class="msg"></div>
   </section>
-
   <section id="s-contract" style="display:none"><h2>契约线 · 业主监理（工艺问答 / 报价单 / 工地日报）</h2>
-
     <div style="border:1px solid #e0e0e0;border-radius:11px;padding:14px 18px;margin-bottom:14px;background:#fafafc">
       <b style="font-size:13px;color:#248a3d">① 工艺问答</b>
       <div class="row" style="margin-top:8px">
@@ -294,7 +303,6 @@ a{color:var(--brand)}
       <div id="t-qa" class="msg" style="min-height:20px"></div>
       <div class="msg" id="m-qa"></div>
     </div>
-
     <div style="border:1px solid #e0e0e0;border-radius:11px;padding:14px 18px;margin-bottom:14px;background:#fafafc">
       <b style="font-size:13px;color:#248a3d">② 报价单（草稿，不自动发）</b>
       <div class="row" style="margin-top:8px">
@@ -307,8 +315,7 @@ a{color:var(--brand)}
       <table id="t-quote"></table>
       <div class="msg" id="m-quote"></div>
     </div>
-
-    <div style="border:1px solid #e0e0e0;border-radius:11px;padding:14px 18px;background:#fafafc">
+    <div style="border:1px solid #e0e0e0;border-radius:11px;padding:14px 18px;margin-bottom:14px;background:#fafafc">
       <b style="font-size:13px;color:#248a3d">③ 工地日报（OCR + 模板 → 人工发送）</b>
       <div class="row" style="margin-top:8px">
         <input id="rp_project" placeholder="项目，如：保利和光尘樾-189" style="flex:1.2">
@@ -318,7 +325,6 @@ a{color:var(--brand)}
       <div id="t-report" class="msg" style="min-height:20px;line-height:1.7"></div>
     </div>
   </section>
-
   <section id="s-team" style="display:none"><h2>九部门视图 · 编队v3（总经办 / 材料 / 软装 / 售后）</h2>
     <div style="border:1px solid #e0e0e0;border-radius:11px;padding:14px 18px;margin-bottom:14px;background:#fafafc">
       <b style="font-size:13px;color:#1d1d1f">总经办（审批 / 看板 / 审计 / 协调）</b>
@@ -453,7 +459,6 @@ async function loadProjectDetail(){
     el.innerHTML=h;
   }catch(e){ el.textContent='加载失败：'+e.message; }
 }
-
 async function genQuote(pid){
   try{
     const r=await jpost('/api/projects/'+pid+'/quote',{requirements:'工作台生成'});
@@ -495,7 +500,6 @@ async function exportQuote(qid){
     window.open(r.url,'_blank');
   }catch(e){ alert(e.message); }
 }
-
 const U=()=>localStorage.getItem('platform_user')||'admin';
 const R=()=>localStorage.getItem('platform_role')||'主管';
 // 与 kernel/roles.py 对齐：主管/董事长全权，销售 起草/评分/邀约/审批，客服 起草/评分/迁移，其余只读
@@ -510,10 +514,8 @@ async function api(path,opts={}){
   return d;
 }
 const jpost=(p,b)=>api(p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...b,user:U()})});
-
 function logout(){localStorage.removeItem('platform_user');location.href='/';}
 document.getElementById('who').textContent=U()+' · '+R()+' · 壹城精工';
-
 async function loadLeads(){
   const q=document.getElementById('q').value;
   try{
@@ -578,7 +580,6 @@ async function toggleDetail(id){
     tr.style.display='';
   }catch(e){alert(e.message);}
 }
-
 async function loadProjects(){
   try{
     const d=await api('/api/projects');
@@ -586,7 +587,6 @@ async function loadProjects(){
       `<tr><td>${x.id}</td><td>#${x.customer_id}</td><td>${esc(x.status)}</td><td>${esc(x.designer||'-')}</td><td>${esc(x.created_at||'-')}</td></tr>`).join('')||'<tr><td colspan=5>暂无项目（派单后在此可见）</td></tr>';
   }catch(e){document.getElementById('m-projects').textContent='加载失败: '+e.message;}
 }
-
 async function loadInbox(){
   try{
     const d=await api('/api/inbox');
@@ -599,7 +599,6 @@ async function loadInbox(){
 }
 async function approve(mid){try{await jpost('/api/inbox/'+mid+'/approve',{});alert('已发送（审计已记录）');loadInbox();}catch(e){alert(e.message);}}
 async function reject(mid){const reason=prompt('驳回原因：','');try{await jpost('/api/inbox/'+mid+'/reject',{reason:reason||''});alert('已驳回');loadInbox();}catch(e){alert(e.message);}}
-
 async function loadTodos(){
   try{
     const d=await api('/api/todos');
@@ -609,7 +608,6 @@ async function loadTodos(){
   }catch(e){document.getElementById('m-todos').textContent='加载失败: '+e.message;}
 }
 async function doneTodo(tid){try{await jpost('/api/todos/'+tid+'/done',{});loadTodos();}catch(e){alert(e.message);}}
-
 async function loadStats(){
   try{
     const d=await api('/api/stats');
@@ -620,7 +618,6 @@ async function loadStats(){
        <div class="card"><b>${d['线索转化率(派单/线索)']}%</b>线索转化率</div>`;
   }catch(e){document.getElementById('t-stats').innerHTML='加载失败: '+e.message;}
 }
-
 async function searchKb(){
   const q=document.getElementById('kbq').value.trim();
   try{
@@ -629,7 +626,6 @@ async function searchKb(){
       `<div style="margin-bottom:8px"><b>${esc(h.title)}</b>（${esc(h.source)}）<br>${esc(h.snippet)}</div>`).join('')||'无命中';
   }catch(e){document.getElementById('t-kb').textContent='检索失败: '+e.message;}
 }
-
 // ===== 契约线（业主监理）：工艺问答 / 报价单 / 工地日报 =====
 async function runQa(){
   const q=document.getElementById('qa_q').value.trim();
@@ -676,8 +672,6 @@ async function loadOwners(){
       `<option value="${o.id}">#${o.id} ${esc(o.nickname||o.wechat_id)} · ${esc(o.community||'-')}</option>`).join('')||'<option value="">（暂无业主）</option>';
   }catch(e){}
 }
-
-
 // ---- 编队v3 九部门视图（P8）----
 async function loadCeo(which){
   const el=document.getElementById('t-ceo');
@@ -804,7 +798,6 @@ async function asDue(){
     alert('回访/质保提醒生成 '+d.created.length+' 条');
   }catch(e){alert(e.message);}
 }
-
 async function loadDesigners(){
   try{
     const d=await api('/api/team/designers');
@@ -840,7 +833,7 @@ def export_file(fname: str):
     from fastapi.responses import FileResponse
     p = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))), "exports", fname)
     if not _os.path.isfile(p) or ".." in fname:
-        raise HTTPException(404, "文件不存在")
+        raise HTTPException(status_code=404, detail="文件不存在")
     return FileResponse(p, filename=fname)
 
 
@@ -887,3 +880,8 @@ def login(body: LoginBody):
     if row[0] != _hash_pwd(body.password):
         return JSONResponse({"ok": False, "error": "密码错误"}, status_code=401)
     return {"ok": True, "account": body.account, "role": row[1], "company": row[2]}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("api_server:app", host="0.0.0.0", port=8000)

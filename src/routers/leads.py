@@ -15,7 +15,7 @@ from memory_manager import MemoryManager
 
 router = APIRouter(prefix="/api", tags=["leads"])
 lead_agent = LeadAgent()
-mm = MemoryManager("壹城精工")
+mm = MemoryManager()
 
 
 class LeadIn(BaseModel):

@@ -59,7 +59,7 @@ def template():
 def search(q: str, top_k: int = 5):
     """Otter 读取第3步：按需检索 L3+L4（知识库/沉淀/记忆文件/客户画像），带来源"""
     from memory_manager import MemoryManager
-    mm = MemoryManager("壹城精工")
+    mm = MemoryManager()
     if not q.strip():
         return {"total": 0, "items": []}
     hits = mm.retrieve(q, top_k=top_k)

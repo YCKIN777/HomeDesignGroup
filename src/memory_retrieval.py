@@ -18,7 +18,7 @@ ROOT = r"H:\AgentProjects\HomeDesignGroup"
 def retrieve_all(query: str, top_k: int = 5, include_l2_customer: int = None,
                  company: str = "壹城精工") -> dict:
     """统一检索：L3+L4 按需检索（带来源）；可选并入指定客户的 L2 短记忆。"""
-    mm = MemoryManager(company)
+    mm = MemoryManager()
     hits = mm.retrieve(query, top_k=top_k)
     l2 = []
     if include_l2_customer:
