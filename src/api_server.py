@@ -207,6 +207,18 @@ a{color:var(--brand)}
   .top{padding:0 14px}
   .top-search{min-width:0;width:150px}
 }
+/* === P0 客户旅程轨道 === */
+.jr-track{display:flex;align-items:flex-start;gap:0;flex:1;min-width:520px;}
+.jr-node{display:flex;flex-direction:column;align-items:center;gap:4px;width:72px;flex:none;}
+.jr-dot{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;background:#eef1f6;color:#98a2b3;border:2px solid #e4e7ec;}
+.jr-label{font-size:11px;color:#667085;white-space:nowrap;}
+.jr-line{flex:1;height:2px;background:#e4e7ec;margin-top:12px;min-width:16px;}
+.jr-node.done .jr-dot{background:#3b82f6;color:#fff;border-color:#3b82f6;}
+.jr-node.done .jr-label{color:#3b82f6;font-weight:600;}
+.jr-node.active .jr-dot{background:#fff;color:#3b82f6;border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.15);}
+.jr-node.active .jr-label{color:#1d4ed8;font-weight:700;}
+.jr-node.lost .jr-dot{background:#fef2f2;color:#dc2626;border-color:#fecaca;}
+.jr-node.lost .jr-label{color:#dc2626;}
 </style></head><body>
 <div class="app">
   <aside class="side">
@@ -623,8 +635,53 @@ async function toggleDetail(id){
     const d=await api('/api/leads/'+id);
     const l2=d.l2||[];
     const msgs=l2.map(m=>esc(m.content||'')).filter(Boolean).join('<br>');
-    const prof=[d.estate,d.layout,d.area&&(d.area+'㎡'),d.budget_range,d.style,d.intent_time,d.channel,(d.tags||[]).join(',')].filter(Boolean).join(' / ');
-    tr.innerHTML='<td colspan="8"><b>档案：</b>'+esc(prof||'未完善')+'<br><b>最近沟通（L2）：</b><br>'+(msgs||'暂无消息')+'</td>';
+    const prof=[d.estate,d.layout,d.area&&(d.area+'㎡'),d.budget_range,d.style,d.intent_time,d.channel,(Array.isArray(d.tags)?d.tags:(d.tags?String(d.tags).split(/[,，、]/):[]))].filter(Boolean).join(' / ');
+    // === P0 客户旅程轨道：线索→跟进→邀约到店→派单→设计报价→签约成交 ===
+    const STAGES=['线索','跟进','邀约到店','派单','设计报价','签约成交'];
+    const curMap={'线索':0,'跟进':1,'邀约':2,'到店':2,'派单':3,'成交':5};
+    const isLost=d.status==='流失';
+    const cur=curMap[d.status]!=null?curMap[d.status]:0;
+    const track=STAGES.map((s,i)=>{
+      const done=!isLost&&i<cur;
+      const active=!isLost&&i===cur;
+      const cls=done?'done':(active?'active':'todo');
+      const dot=done?'✓':(i+1);
+      return '<div class="jr-node '+cls+'"><div class="jr-dot">'+dot+'</div><div class="jr-label">'+s+'</div></div>';
+    }).join('<div class="jr-line"></div>');
+    // 信息完整度（楼盘/面积/户型/风格/预算 5 项）
+    const fields=[d.estate,d.area,d.layout,d.style,d.budget_range].filter(Boolean).length;
+    const pct=Math.round(fields/5*100);
+    // 停留天数
+    let stay='-',stayDays=-1;
+    if(d.created_at){try{stayDays=Math.floor((Date.now()-new Date(d.created_at.replace(' ','T')))/(86400000));stay=stayDays+' 天';}catch(e){}}
+    // SOP 提示
+    let sopHint;
+    if(isLost){sopHint='<span style="color:#dc2626">已流失</span>';}
+    else if(fields<3){sopHint='<span style="color:#d97706">信息未齐（'+fields+'/5），先补楼盘/面积/预算再跟进</span>';}
+    else if(stayDays>=0&&stayDays>=1){sopHint='<span style="color:#d97706">已停留 '+stay+'，建议今天首联（首联2h窗口）</span>';}
+    else{sopHint='<span style="color:#16a34a">状态正常</span>';}
+    // === P1 Sentinel 审批闸门：根据客户状态推导关键确认项 ===
+    const checks=[
+      {label:'首联电话已拨', done:!!d.phone},
+      {label:'信息双人复核（楼盘/面积/预算齐全）', done:!!(d.estate&&d.area&&d.budget_range)},
+      {label:'报价已生成（有预算区间）', done:!!d.budget_range},
+      {label:'折扣审批（<9.8折需总监批）', done:false, note:'未触发'},
+      {label:'合同已签', done:d.status==='成交'},
+      {label:'首付60%已收', done:d.status==='成交'}
+    ];
+    const checklist=checks.map(c=>
+      '<div style="display:inline-block;margin:3px 14px 3px 0;font-size:12px;color:#334155;">'
+      +(c.done?'<span style="color:#16a34a;font-weight:700;">☑</span> ':'<span style="color:#cbd5e1;font-weight:700;">☐</span> ')
+      +c.label+'</div>').join('');
+    const doneCount=checks.filter(c=>c.done).length;
+    tr.innerHTML='<td colspan="8">'
+      +'<div style="margin:4px 0 8px;">'+(isLost?'<span style="color:#dc2626;font-weight:600;">[流失] </span>':'')+track+'</div>'
+      +'<div style="font-size:12px;color:#555;margin:6px 0;">信息完整度 <b>'+fields+'/5</b>　·　停留 <b>'+stay+'</b>　·　'+sopHint+'</div>'
+      +'<div style="height:6px;background:#eef1f6;border-radius:3px;overflow:hidden;margin-bottom:10px;"><div style="height:100%;width:'+pct+'%;background:#3b82f6;"></div></div>'
+      +'<div style="margin:6px 0 10px;padding:8px 12px;background:#f8fafc;border:1px solid #eef1f6;border-radius:6px;">'
+      +'<div style="font-size:11px;color:#667085;margin-bottom:4px;">审批闸门 · Sentinel（对外动作默认人工确认）　已过 <b style="color:#16a34a;">'+doneCount+'/6</b></div>'
+      +checklist+'</div>'
+      +'<b>档案：</b>'+esc(prof||'未完善')+'<br><b>最近沟通（L2）：</b><br>'+(msgs||'暂无消息')+'</td>';
     tr.style.display='';
   }catch(e){alert(e.message);}
 }
